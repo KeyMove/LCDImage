@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -168,20 +169,57 @@ namespace LCDImageSize
             GC.Collect();
         }
 
+        Bitmap ImageResize(Bitmap map, int w, int h)
+        {
+            try
+            {
+                Bitmap bmap = new Bitmap(w, h);
+                Graphics g = Graphics.FromImage(bmap);
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(map, new Rectangle(0, 0, w, h), new Rectangle(0, 0, map.Width, map.Height), GraphicsUnit.Pixel);
+                g.Dispose();
+                return bmap;
+            }
+            catch { return null; }
+        }
+
         private void addimg_Click(object sender, EventArgs e)
         {
-            of.Filter = of.Filter = "BMP图片|*.bmp|JPG图片|*.jpg|GIF图片|*.gif";
+            of.Filter = of.Filter = "图片文件(*.jpg,*.jpeg,*.bmp,*.gif,*.ico,*.png,*.tif,*.wmf )|*.jpg;*.jpeg;*.bmp;*.gif;*.ico;*.png;*.tif;*.wmf";
             if (of.ShowDialog() == DialogResult.OK)
             {
-                try
+                //EncoderParameters a = new EncoderParameters(2);
+                if (of.SafeFileName.ToLower().LastIndexOf(".gif") != -1)
                 {
-                    imglist.Items.Add(new img(of.SafeFileName, new Bitmap(of.FileName)));
-                    if (imglist.SelectedIndex == -1)
-                        imglist.SelectedIndex = 0;
+                    Image img = Image.FromFile(of.FileName);
+                    FrameDimension fd = new FrameDimension(img.FrameDimensionsList[0]);
+                    int count = img.GetFrameCount(fd);
+                    for (int i = 0; i < count; i++)
+                    {
+                        img.SelectActiveFrame(fd, i);
+                        imglist.Items.Add(new img(of.SafeFileName + "第" + i + "帧", new Bitmap(img)));
+                        if (imglist.SelectedIndex == -1)
+                            imglist.SelectedIndex = 0;
+                    }
                     selectmap = ((img)imglist.SelectedItem).map;
                     updateDisplay();
                 }
-                catch { MessageBox.Show("图片无效"); }
+                else
+                    try
+                    {
+                        Bitmap desmap = new Bitmap(of.FileName);
+                        Bitmap srcmap = new Bitmap(desmap.Width, desmap.Height);
+                        Graphics g = Graphics.FromImage(srcmap);
+                        g.DrawImage(desmap, 0, 0);
+                        g.Dispose();
+                        desmap.Dispose();
+                        imglist.Items.Add(new img(of.SafeFileName, srcmap));
+                        if (imglist.SelectedIndex == -1)
+                            imglist.SelectedIndex = 0;
+                        selectmap = ((img)imglist.SelectedItem).map;
+                        updateDisplay();
+                    }
+                    catch { MessageBox.Show("图片无效"); }
             }
         }
 
@@ -503,7 +541,7 @@ namespace LCDImageSize
                                 for(int i = 0; i < 8; i++)
                                 {
                                     int hv = i + y*8;
-                                    if (hv > selectmap.Height) continue;
+                                    if (hv >= selectmap.Height) break;
                                     if (!scaninv)
                                     {
                                         dat <<= 1;
@@ -607,6 +645,7 @@ namespace LCDImageSize
             if (imglist.Items.Count != 0)
             {
                 index--;
+                if (index < 0) index = 0;
                 imglist.SelectedIndex = index;
                 selectmap = ((img)imglist.SelectedItem).map;
                 updateDisplay();
@@ -618,6 +657,126 @@ namespace LCDImageSize
             }
             
 
+        }
+
+        private void 复制ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(OutPutData.Text);
+        }
+
+        SaveFileDialog sf = new SaveFileDialog();
+        private void 保存为文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (selectmap == null) return;
+            sf.Filter = "数据文件(*.dat)|*.dat";
+            if (sf.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fs = new FileStream(sf.FileName, FileMode.OpenOrCreate);
+                byte[] imgdata = imgtoByte();
+                if (imgdata == null)
+                {
+                    MessageBox.Show("图片无效");
+                }
+                if (enablezip.Checked)
+                {
+                    imgdata = encode(imgdata, zipmode.SelectedIndex);
+                }
+                fs.Write(imgdata, 0, imgdata.Length);
+                fs.Flush();
+                fs.Close();
+                MessageBox.Show("保存成功");
+            }
+        }
+
+        ResizeImage resizeimg = new ResizeImage();
+        private void resizebutton_Click(object sender, EventArgs e)
+        {
+            if (selectmap == null) return;
+            resizeimg.ImgSize = new Size(selectmap.Width, selectmap.Height);
+            if (resizeimg.ShowDialog() == DialogResult.OK)
+            {
+                Size s = resizeimg.ImgSize;
+                ((img)imglist.SelectedItem).map = selectmap = ImageResize(selectmap, s.Width, s.Height);
+                updateDisplay();
+            }
+        }
+
+        public Bitmap ConvertTo24bppTo1bpp(Bitmap SrcImg)
+        {
+
+
+            //unsafe
+            //{
+            //    byte* SrcPointer, DestPointer;
+            //    int Width, Height, SrcStride, DestStride;
+            //    int X, Y, Index, Sum; ;
+            //    Bitmap DestImg = new Bitmap(SrcImg.Width, SrcImg.Height, PixelFormat.Format1bppIndexed);
+            //    BitmapData SrcData = new BitmapData();
+            //    SrcImg.LockBits(new Rectangle(0, 0, SrcImg.Width, SrcImg.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb, SrcData);
+            //    BitmapData DestData = new BitmapData();
+            //    DestImg.LockBits(new Rectangle(0, 0, SrcImg.Width, SrcImg.Height), ImageLockMode.ReadWrite, PixelFormat.Format1bppIndexed, DestData);
+            //    Width = SrcImg.Width; Height = SrcImg.Height; SrcStride = SrcData.Stride; DestStride = DestData.Stride;
+            //    for (Y = 0; Y < Height; Y++)
+            //    {
+            //        SrcPointer = (byte*)SrcData.Scan0 + Y * SrcStride;
+            //        DestPointer = (byte*)DestData.Scan0 + Y * DestStride;
+            //        Index = 7; Sum = 0;
+            //        for (X = 0; X < Width; X++)
+            //        {
+            //            if (*SrcPointer + (*(SrcPointer + 1) << 1) + *(SrcPointer + 2) >= 512) Sum += (1 << Index);
+            //            if (Index == 0)
+            //            {
+            //                *DestPointer = (byte)Sum;
+            //                Sum = 0;
+            //                Index = 7;
+            //                DestPointer++;
+            //            }
+            //            else
+            //                Index--;
+            //            SrcPointer += 3;
+            //        }
+            //        if (Index != 7) *DestPointer = (byte)Sum;
+            //    }
+            //    SrcImg.UnlockBits(SrcData);
+            //    DestImg.UnlockBits(DestData);
+            //    return DestImg;
+            //}
+            return null;
+        }
+
+        private void saveimg_Click(object sender, EventArgs e)
+        {
+            if (selectmap == null) return;
+            sf.Filter = "BMP图片|*.bmp";
+            if (sf.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap savebitmap = new Bitmap(selectmap.Width, selectmap.Height, PixelFormat.Format1bppIndexed);
+                BitmapData imgdata = new BitmapData();
+                savebitmap.LockBits(new Rectangle(0, 0, savebitmap.Width, savebitmap.Height), ImageLockMode.ReadWrite, PixelFormat.Format1bppIndexed, imgdata);
+                int stride = imgdata.Stride;
+                int w = (selectmap.Width + 7) / 8;
+                byte[] buff = new byte[w];
+                for (int y = 0; y < selectmap.Height; y++)
+                {
+                    for (int x = 0; x < w; x++)
+                    {
+                        byte dat = 0;
+                        for (int i = 0; i < 8; i++)
+                        {
+                            int pos = x * 8 + i;
+                            if (pos >= selectmap.Width) break;
+                            dat <<= 1;
+                            if (mapdata[pos, y] != 0)
+                                dat++;
+                        }
+                        buff[x] = (byte)~dat;
+                    }
+                    Marshal.Copy(buff, 0, imgdata.Scan0 + y * stride, buff.Length);
+                }
+                savebitmap.UnlockBits(imgdata);
+                savebitmap.Save(sf.FileName,ImageFormat.Bmp);
+                MessageBox.Show("保存完成");
+            }
         }
 
         private void BitmapView_MouseClick(object sender, MouseEventArgs e)

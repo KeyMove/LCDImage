@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Showpanel = new System.Windows.Forms.Panel();
+            this.TextInput = new System.Windows.Forms.TextBox();
             this.BitmapView = new System.Windows.Forms.PictureBox();
             this.imglist = new System.Windows.Forms.ListBox();
             this.OutPutData = new System.Windows.Forms.TextBox();
@@ -56,7 +59,11 @@
             this.zipmode = new System.Windows.Forms.ComboBox();
             this.enablezip = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.TextInput = new System.Windows.Forms.TextBox();
+            this.dataoutmenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.保存为文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resizebutton = new System.Windows.Forms.Button();
+            this.saveimg = new System.Windows.Forms.Button();
             this.Showpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BitmapView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grayval)).BeginInit();
@@ -65,6 +72,7 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.dataoutmenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // Showpanel
@@ -78,6 +86,17 @@
             this.Showpanel.Name = "Showpanel";
             this.Showpanel.Size = new System.Drawing.Size(601, 328);
             this.Showpanel.TabIndex = 0;
+            // 
+            // TextInput
+            // 
+            this.TextInput.Font = new System.Drawing.Font("宋体", 16F);
+            this.TextInput.Location = new System.Drawing.Point(3, 272);
+            this.TextInput.Multiline = true;
+            this.TextInput.Name = "TextInput";
+            this.TextInput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TextInput.Size = new System.Drawing.Size(592, 51);
+            this.TextInput.TabIndex = 1;
+            this.TextInput.Visible = false;
             // 
             // BitmapView
             // 
@@ -104,6 +123,7 @@
             // 
             // OutPutData
             // 
+            this.OutPutData.ContextMenuStrip = this.dataoutmenu;
             this.OutPutData.Location = new System.Drawing.Point(12, 355);
             this.OutPutData.Multiline = true;
             this.OutPutData.Name = "OutPutData";
@@ -291,6 +311,8 @@
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.imglist);
             this.tabPage1.Controls.Add(this.addimg);
+            this.tabPage1.Controls.Add(this.resizebutton);
+            this.tabPage1.Controls.Add(this.saveimg);
             this.tabPage1.Controls.Add(this.newimage);
             this.tabPage1.Controls.Add(this.rmimg);
             this.tabPage1.Controls.Add(this.grayval);
@@ -366,16 +388,48 @@
             this.label2.TabIndex = 15;
             this.label2.Text = "数据输出:";
             // 
-            // TextInput
+            // dataoutmenu
             // 
-            this.TextInput.Font = new System.Drawing.Font("宋体", 16F);
-            this.TextInput.Location = new System.Drawing.Point(3, 272);
-            this.TextInput.Multiline = true;
-            this.TextInput.Name = "TextInput";
-            this.TextInput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TextInput.Size = new System.Drawing.Size(592, 51);
-            this.TextInput.TabIndex = 1;
-            this.TextInput.Visible = false;
+            this.dataoutmenu.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.dataoutmenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.复制ToolStripMenuItem,
+            this.保存为文件ToolStripMenuItem});
+            this.dataoutmenu.Name = "dataoutmenu";
+            this.dataoutmenu.Size = new System.Drawing.Size(161, 56);
+            // 
+            // 保存为文件ToolStripMenuItem
+            // 
+            this.保存为文件ToolStripMenuItem.Name = "保存为文件ToolStripMenuItem";
+            this.保存为文件ToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.保存为文件ToolStripMenuItem.Text = "保存为文件";
+            this.保存为文件ToolStripMenuItem.Click += new System.EventHandler(this.保存为文件ToolStripMenuItem_Click);
+            // 
+            // 复制ToolStripMenuItem
+            // 
+            this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
+            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.复制ToolStripMenuItem.Text = "复制";
+            this.复制ToolStripMenuItem.Click += new System.EventHandler(this.复制ToolStripMenuItem_Click);
+            // 
+            // resizebutton
+            // 
+            this.resizebutton.Location = new System.Drawing.Point(63, 326);
+            this.resizebutton.Name = "resizebutton";
+            this.resizebutton.Size = new System.Drawing.Size(60, 23);
+            this.resizebutton.TabIndex = 6;
+            this.resizebutton.Text = "分辨率";
+            this.resizebutton.UseVisualStyleBackColor = true;
+            this.resizebutton.Click += new System.EventHandler(this.resizebutton_Click);
+            // 
+            // saveimg
+            // 
+            this.saveimg.Location = new System.Drawing.Point(63, 297);
+            this.saveimg.Name = "saveimg";
+            this.saveimg.Size = new System.Drawing.Size(60, 23);
+            this.saveimg.TabIndex = 6;
+            this.saveimg.Text = "保存";
+            this.saveimg.UseVisualStyleBackColor = true;
+            this.saveimg.Click += new System.EventHandler(this.saveimg_Click);
             // 
             // Form1
             // 
@@ -387,8 +441,9 @@
             this.Controls.Add(this.build);
             this.Controls.Add(this.OutPutData);
             this.Controls.Add(this.Showpanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "图片点阵转换";
             this.Showpanel.ResumeLayout(false);
             this.Showpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BitmapView)).EndInit();
@@ -400,6 +455,7 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.dataoutmenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,6 +492,11 @@
         private System.Windows.Forms.ComboBox zipmode;
         private System.Windows.Forms.CheckBox enablezip;
         private System.Windows.Forms.TextBox TextInput;
+        private System.Windows.Forms.ContextMenuStrip dataoutmenu;
+        private System.Windows.Forms.ToolStripMenuItem 复制ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 保存为文件ToolStripMenuItem;
+        private System.Windows.Forms.Button resizebutton;
+        private System.Windows.Forms.Button saveimg;
     }
 }
 
