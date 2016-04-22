@@ -210,7 +210,7 @@ namespace LCDImageSize
                         Bitmap desmap = new Bitmap(of.FileName);
                         Bitmap srcmap = new Bitmap(desmap.Width, desmap.Height);
                         Graphics g = Graphics.FromImage(srcmap);
-                        g.DrawImage(desmap, 0, 0);
+                        g.DrawImageUnscaledAndClipped(desmap,new Rectangle(0,0,desmap.Width,desmap.Height));
                         g.Dispose();
                         desmap.Dispose();
                         imglist.Items.Add(new img(of.SafeFileName, srcmap));
