@@ -16,6 +16,7 @@ namespace LCDImageSize
         Bitmap b = new Bitmap(81, 81);
         Graphics g;
 
+        int wv=128, hv=64;
         int mode = 0;
         int count=0;
         int dw, dh;
@@ -29,6 +30,24 @@ namespace LCDImageSize
             selectmode.SelectedIndex = 0;
             dw = (b.Width / 5);
             dh = (b.Height / 5);
+        }
+
+        public Size ImgSize
+        {
+            get { return new Size(wv, hv); }
+            set { wv = value.Width; hv = value.Height; }
+        }
+
+        public bool setDataFormatWinodow
+        {
+            get { return DataFormatBox.Visible; }
+            set { DataFormatBox.Visible = value; }
+        }
+
+        public bool setSizeWinodow
+        {
+            get { return ImageSizeBox.Visible; }
+            set { ImageSizeBox.Visible = value; }
         }
 
         public int Mode
@@ -63,6 +82,8 @@ namespace LCDImageSize
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
+            HValue.Text = hv.ToString();
+            WValue.Text = wv.ToString();
             g.Clear(Color.White);
             count = 0;
             updatemap.Start();
@@ -140,6 +161,28 @@ namespace LCDImageSize
             count = 0;
             g.Clear(Color.White);
             mode = selectmode.SelectedIndex;
+        }
+
+        private void OKButton_Click(object sender, EventArgs e)
+        {
+            try {
+                hv = (hv = int.Parse(HValue.Text)) < 1 ? 1 : hv;
+                wv = (wv = int.Parse(WValue.Text)) < 1 ? 1 : wv;
+            }
+            catch
+            {
+                hv = 1;
+                wv = 1;
+            }
+        }
+
+        private void IntInput(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != 8 && !Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
         }
     }
 }

@@ -183,13 +183,31 @@ namespace LCDImageSize
             catch { return null; }
         }
 
+       
+
         private void addimg_Click(object sender, EventArgs e)
         {
-            of.Filter = of.Filter = "图片文件(*.jpg,*.jpeg,*.bmp,*.gif,*.ico,*.png,*.tif,*.wmf )|*.jpg;*.jpeg;*.bmp;*.gif;*.ico;*.png;*.tif;*.wmf";
+            of.Filter = of.Filter = "图片文件(*.jpg,*.jpeg,*.bmp,*.gif,*.ico,*.png,*.tif,*.wmf )|*.jpg;*.jpeg;*.bmp;*.gif;*.ico;*.png;*.tif;*.wmf|点阵数据文件(*.dat)|*.dat";
             if (of.ShowDialog() == DialogResult.OK)
             {
                 //EncoderParameters a = new EncoderParameters(2);
-                if (of.SafeFileName.ToLower().LastIndexOf(".gif") != -1)
+                if (of.SafeFileName.ToLower().LastIndexOf(".dat") != -1){
+                    SettingWindow ts= new SettingWindow();
+                    ts.setSizeWinodow = true;
+                    ts.setDataFormatWinodow = false;
+                    if (ts.ShowDialog() == DialogResult.OK)
+                    {
+                        FileStream fs = new FileStream(of.FileName,FileMode.Open);
+                        Size s = ts.ImgSize;
+                        imglist.Items.Add(new img(of.SafeFileName, BytetoImg(fs, s.Width, s.Height, ts.Mode, ts.BitInv, ts.ScanInv)));
+                        if (imglist.SelectedIndex == -1)
+                            imglist.SelectedIndex = 0;
+                        selectmap = ((img)imglist.SelectedItem).map;
+                        updateDisplay();
+                    }
+                    ts.Dispose();
+                }
+                else if(of.SafeFileName.ToLower().LastIndexOf(".gif") != -1)
                 {
                     Image img = Image.FromFile(of.FileName);
                     FrameDimension fd = new FrameDimension(img.FrameDimensionsList[0]);
@@ -517,6 +535,7 @@ namespace LCDImageSize
 
         }
 
+        
 
         byte[] imgtoByte()
         {
@@ -564,6 +583,59 @@ namespace LCDImageSize
                     break;
             }
             return data;
+        }
+
+        Bitmap BytetoImg(Stream data, int w, int h, int mode, bool binv, bool sinv)
+        {
+            Bitmap map = new Bitmap(w, h);
+            Color pointcolor = binv ? Color.White : Color.Black;
+            Graphics g = Graphics.FromImage(map);
+            g.Clear(binv ? Color.Black : Color.White);
+            g.Dispose();
+            int x, y;
+            int t, dat;
+            int hv = (h + 7) / 8;
+            int count = 0;
+            switch (mode)
+            {
+                case 0:
+                    for (y = 0; y < hv; y++)
+                    {
+                        for (x = 0; x < w; x++)
+                        {
+                            dat = data.ReadByte();
+                            for (t = 0; t < 8; t++)
+                            {
+                                if (!sinv)
+                                {
+                                    if ((dat & 0x80) != 0)
+                                    {
+                                        map.SetPixel(x, y*8 + t, pointcolor);
+                                    }
+                                    dat <<= 1;
+                                }
+                                else
+                                {
+                                    if ((dat & 1) != 0)
+                                    {
+                                        map.SetPixel(x, y * 8 + t, pointcolor);
+                                    }
+                                    dat >>= 1;
+                                }
+                            }
+                        }
+                    }
+                    break;
+            }
+
+            return map;
+
+        }
+
+        Bitmap LoadBinData(byte[] data, int w, int h, int mode, bool binv, bool sinv)
+        {
+            MemoryStream ms = new MemoryStream(data);
+            return BytetoImg(ms, w, h, mode, binv, sinv);
         }
 
         private void build_Click(object sender, EventArgs e)
