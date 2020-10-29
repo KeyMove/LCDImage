@@ -35,7 +35,15 @@ namespace LCDImageSize
             //br.ReadBit();
             int bdata = br.ReadBits(10);
             //bdata = br.ReadBits(3);
+            fontmap = new Bitmap(128, 128);
+            fontdraw = Graphics.FromImage(fontmap);
+            fontdraw.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
 
+            modmap = new Bitmap(128, 128);
+            moddraw = Graphics.FromImage(modmap);
+            moddraw.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+            selectfont = Font;
+            fonttestTB_TextChanged(null, null);
         }
 
         private void BitmapView_MouseWheel(object sender, MouseEventArgs e)
@@ -61,9 +69,10 @@ namespace LCDImageSize
         bool bitinv = false;//黑白反向
         bool scaninv = true;//扫描反向
         int mode = 0;//取模模式
-        string strformat="0x{0:X2},";
+        string strformat = "0x{0:X2},";
 
-        Bitmap selectmap=null;
+        
+        Bitmap selectmap = null;
         int scalsize = 5;
         byte[,] mapdata;
         int[] datacount = new int[256];
@@ -71,16 +80,57 @@ namespace LCDImageSize
         {
             public string name;
             public Bitmap map;
-            public img(string n,Bitmap m)
+            public bool isString;
+            public string info;
+            public img(string n, Bitmap m)
             {
                 name = n;
                 map = m;
+                isString = false;
             }
+            public img(string n, Bitmap m,string str)
+            {
+                name = n;
+                map = m;
+                info = str;
+                isString = true;
+            }
+
 
             public override string ToString()
             {
-                return name + "[" + map.Width + "x" + map.Height+"]";
+                return name + "[" + map.Width + "x" + map.Height + "]";
             }
+        }
+
+        Bitmap LEDmap = new Bitmap(240, 240);
+        Graphics LEDDraw;
+
+        void DrawLED8()
+        {
+            int sx = 40;
+            int sy = 20;
+            string y = "AGD";
+            string x = "FEBC";
+            for (int i = 0; i < 3; i++)
+            {
+                LEDDraw.FillRectangle(Brushes.Black, new Rectangle(sx, sy+i*80, 80, 20));
+                LEDDraw.DrawString(""+y[i], Font, Brushes.Red, sx + 80 / 2-4, sy + i * 80 + 4);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                LEDDraw.FillRectangle(Brushes.Black, new Rectangle(sx-20+i*100, sy+20, 20, 80-20));
+                LEDDraw.DrawString("" + x[i*2], Font, Brushes.Red, sx - 20 + i * 100+4, sy + 20+60/2-4);
+                LEDDraw.FillRectangle(Brushes.Black, new Rectangle(sx-20+i*100, sy+20+80, 20, 80-20));
+                LEDDraw.DrawString("" + x[i * 2+1], Font, Brushes.Red, sx - 20 + i * 100+4, sy + 20 + 80 + 60 / 2 - 4);
+            }
+
+        }
+
+        void UpdateLEDMap()
+        {
+            DrawLED8();
+            LEDOUTBOX.Image = LEDmap;
         }
 
         void InitRGB()
@@ -158,6 +208,9 @@ namespace LCDImageSize
         void updateDisplay()
         {
             if (imglist.SelectedItem == null) return;
+            TextInput.Visible=((img)imglist.SelectedItem).isString;
+            if (TextInput.Visible)
+                TextInput.Text = ((img)imglist.SelectedItem).info;
             Bitmap map = toBin(((img)imglist.SelectedItem).map,(int)(grayval.Value*2.55));
             BitmapView.Image = toPointMap(map, scalsize);
             BitmapView.Width = BitmapView.Image.Width;
@@ -187,7 +240,7 @@ namespace LCDImageSize
 
         private void addimg_Click(object sender, EventArgs e)
         {
-            of.Filter = of.Filter = "图片文件(*.jpg,*.jpeg,*.bmp,*.gif,*.ico,*.png,*.tif,*.wmf )|*.jpg;*.jpeg;*.bmp;*.gif;*.ico;*.png;*.tif;*.wmf|点阵数据文件(*.dat)|*.dat";
+            of.Filter = of.Filter = "图片文件(*.jpg,*.jpeg,*.bmp,*.gif,*.ico,*.png,*.tif,*.wmf )|*.jpg;*.jpeg;*.bmp;*.gif;*.ico;*.png;*.tif;*.wmf|点阵数据文件(*.dat)|*.dat|文本文件(*.txt)|*.txt";
             if (of.ShowDialog() == DialogResult.OK)
             {
                 //EncoderParameters a = new EncoderParameters(2);
@@ -206,6 +259,25 @@ namespace LCDImageSize
                         updateDisplay();
                     }
                     ts.Dispose();
+                }
+                else if(of.SafeFileName.ToLower().LastIndexOf(".txt") != -1)
+                {
+                    try
+                    {
+                        MessageBox.Show("暂时不支持");
+                        //Bitmap desmap = new Bitmap(of.FileName);
+                        //Bitmap srcmap = new Bitmap(desmap.Width, desmap.Height);
+                        //Graphics g = Graphics.FromImage(srcmap);
+                        //g.DrawImageUnscaledAndClipped(desmap, new Rectangle(0, 0, desmap.Width, desmap.Height));
+                        //g.Dispose();
+                        //desmap.Dispose();
+                        //imglist.Items.Add(new img(of.SafeFileName, srcmap));
+                        //if (imglist.SelectedIndex == -1)
+                        //    imglist.SelectedIndex = 0;
+                        //selectmap = ((img)imglist.SelectedItem).map;
+                        //updateDisplay();
+                    }
+                    catch { MessageBox.Show("图片无效"); }
                 }
                 else if(of.SafeFileName.ToLower().LastIndexOf(".gif") != -1)
                 {
@@ -265,11 +337,16 @@ namespace LCDImageSize
 
         private void BitmapView_MouseMove(object sender, MouseEventArgs e)
         {
+            if(selectimg!=null)
+                if (selectimg.isString) return;
             if (opttype != -1)
             {
                 int x = e.X / scalsize, y = e.Y / scalsize;
                 x = x >= selectmap.Width ? selectmap.Width - 1 : x;
                 y = y >= selectmap.Height ? selectmap.Height - 1 : y;
+                x = x < 0 ? 0 : x;
+                y = y < 0 ? 0 : y;
+
                 if (optx == x && opty == y) return;
                 optx = x;
                 opty = y;
@@ -535,14 +612,14 @@ namespace LCDImageSize
 
         }
 
-        
+
 
         byte[] imgtoByte()
         {
-            byte[] data=null;
+            byte[] data = null;
             int w, h;
             int x, y;
-            int t,dat;
+            int t, dat;
             int count = 0;
             byte[] bitstats = new byte[8];
 
@@ -557,24 +634,31 @@ namespace LCDImageSize
                         for (x = 0; x < w; x++)
                         {
                             dat = 0;
-                                for(int i = 0; i < 8; i++)
+                            for (int i = 0; i < 8; i++)
+                            {
+                                int hv = i + y * 8;
+                                if (hv >= selectmap.Height)
                                 {
-                                    int hv = i + y*8;
-                                    if (hv >= selectmap.Height) break;
                                     if (!scaninv)
-                                    {
                                         dat <<= 1;
-                                        if (mapdata[x, hv] != 0)
-                                            dat++;
-                                    }
                                     else
-                                    {
                                         dat >>= 1;
-                                        if (mapdata[x, hv] != 0)
-                                            dat |= 0x80;
-                                    }
+                                    continue;
                                 }
-                            if(bitinv)
+                                if (!scaninv)
+                                {
+                                    dat <<= 1;
+                                    if (mapdata[x, hv] != 0)
+                                        dat++;
+                                }
+                                else
+                                {
+                                    dat >>= 1;
+                                    if (mapdata[x, hv] != 0)
+                                        dat |= 0x80;
+                                }
+                            }
+                            if (bitinv)
                                 data[count++] = (byte)~dat;
                             else
                                 data[count++] = (byte)dat;
@@ -696,16 +780,43 @@ namespace LCDImageSize
         {
             if (np.ShowDialog() == DialogResult.OK)
             {
-                Size s = np.getSize();
-                Bitmap bs = new Bitmap(s.Width, s.Height);
-                Graphics gx = Graphics.FromImage(bs);
-                gx.Clear(Color.White);
-                gx.Dispose();
-                imglist.Items.Add(new img("新图像"+count++, bs));
-                if (imglist.SelectedIndex == -1)
-                    imglist.SelectedIndex = 0;
-                selectmap = ((img)imglist.SelectedItem).map;
-                updateDisplay();
+                if (np.TYPE())
+                {
+                    var str = np.TEXTValue();
+                    if (str.Length == 0) return;
+                    Size s = np.getSize();
+                    Bitmap bs = new Bitmap(s.Width, s.Height);
+                    Graphics gx = Graphics.FromImage(bs);
+                    gx.Clear(Color.White);
+                    gx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+                    //var str=np.TEXTValue();
+                    if (str != "")
+                    {
+                        using (Font f = new Font(Font.FontFamily, (s.Width * 72 / 96)))
+                        {
+                            gx.DrawString(""+str[0], f, Brushes.Black, 0-np.stringoffset(), 0);
+                        }
+                    }
+                    gx.Dispose();
+                    imglist.Items.Add(new img("字符" + count++, bs,str));
+                    if (imglist.SelectedIndex == -1)
+                        imglist.SelectedIndex = 0;
+                    selectmap = ((img)imglist.SelectedItem).map;
+                    updateDisplay();
+                }
+                else
+                {
+                    Size s = np.getSize();
+                    Bitmap bs = new Bitmap(s.Width, s.Height);
+                    Graphics gx = Graphics.FromImage(bs);
+                    gx.Clear(Color.White);
+                    gx.Dispose();
+                    imglist.Items.Add(new img("新图像" + count++, bs));
+                    if (imglist.SelectedIndex == -1)
+                        imglist.SelectedIndex = 0;
+                    selectmap = ((img)imglist.SelectedItem).map;
+                    updateDisplay();
+                }
             }
         }
 
@@ -761,6 +872,9 @@ namespace LCDImageSize
         }
 
         ResizeImage resizeimg = new ResizeImage();
+        private img selectimg;
+        private Font selectfont;
+
         private void resizebutton_Click(object sender, EventArgs e)
         {
             if (selectmap == null) return;
@@ -851,6 +965,174 @@ namespace LCDImageSize
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LEDDraw = Graphics.FromImage(LEDmap);
+            UpdateLEDMap();
+        }
+
+        private void TextInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        FontDialog fd = new FontDialog();
+        private Bitmap fontmap;
+        private Graphics fontdraw;
+        private Bitmap modmap;
+        private Graphics moddraw;
+
+        private void fontselectBT_Click(object sender, EventArgs e)
+        {
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                selectfont = new Font(fd.Font.FontFamily, fd.Font.Size * 72 / 96, fd.Font.Style);
+                fontsizelabel4.Text = "" + selectfont.Size * 96 / 72;
+                fonttypelabel.Text = selectfont.Name;
+                fonttestTB.Font = selectfont;
+                //fontdraw.Clear(Color.White);
+                //fontdraw.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+                //fontdraw.DrawString("测试123ABC", selectfont, Brushes.Black, 0, 0);
+                //fontprepictureBox1.Image = fontmap;
+                fonttestTB_TextChanged(null, null);
+            }
+        }
+
+        private void fonttestTB_TextChanged(object sender, EventArgs e)
+        {
+            if (fonttestTB.Text.Length == 0) return;
+            int size = int.Parse((string)fontsizeselectCB.SelectedItem);
+            int w = size;
+            int xoffset = fontsizeselectCB.SelectedIndex + 2;
+            if (fonttestTB.Text[0] < 128)
+                w /= 2;
+            using (Font f = new Font(selectfont.FontFamily, (size * 72 / 96),selectfont.Style))
+            {
+                moddraw.Clear(Color.White);
+                moddraw.DrawString(""+fonttestTB.Text[0], f, Brushes.Black, 0-xoffset, 0);
+
+                fontdraw.Clear(Color.White);
+
+                for (int y = 0; y < size; y++)
+                {
+                    for (int x = 0; x < w; x++)
+                    {
+                        if (modmap.GetPixel(x, y).R != 255)
+                            fontdraw.FillRectangle(Brushes.Black, x * 4, y * 4, 4, 4);
+                        else
+                            fontdraw.DrawRectangle(Pens.Red, x * 4, y * 4, 4, 4);
+                    }
+                }
+
+                fontprepictureBox1.Image = fontmap;
+            }
+        }
+
+        MemoryStream buildall(bool ascii=false)
+        {
+
+            MemoryStream data = new MemoryStream();
+            int w, h;
+            int x, y;
+            int t, dat;
+            int count = 0;
+
+            int size = int.Parse((string)fontsizeselectCB.SelectedItem);
+            int xoffset = fontsizeselectCB.SelectedIndex + 2;
+            byte[] hzvalue = new byte[2];
+
+            for(hzvalue[0]=(byte)(fonta1a9CB.Checked?0xa1:0xb0);hzvalue[0]<0xF8;hzvalue[0]++)
+            for (hzvalue[1] = 0xa1; hzvalue[1] < 0xff; hzvalue[1]++)
+            {
+                    if (ascii)
+                    {
+                        if (hzvalue[1] == 0xa1)
+                            hzvalue[0] = 31;
+                        hzvalue[1] = 0;
+                        hzvalue[0]++;
+                        if (hzvalue[0] == 127)
+                        {
+                            return data;
+                        }
+                    }
+                string hz = Encoding.Default.GetString(hzvalue);
+                    if (hzvalue[0] > 0xa9 && hzvalue[0] < 0xb0)
+                        hz = "  ";
+                 using (Font f = new Font(selectfont.FontFamily, (size * 72 / 96),selectfont.Style))
+                {
+                    moddraw.Clear(Color.White);
+                    moddraw.DrawString(hz, f, Brushes.Black, 0 - xoffset, 0);
+                    switch (mode)
+                    {
+                        case 0:
+                            w = size;
+                                if (ascii)
+                                    w /= 2;
+                            h = (size + 7) / 8;
+                                for (y = 0; y < h; y++)
+                                {
+                                    for (x = 0; x < w; x++)
+                                    {
+                                        dat = 0;
+                                        for (int i = 0; i < 8; i++)
+                                        {
+                                            int hv = i + y * 8;
+                                            if (hv >= size)
+                                            {
+                                                if (!scaninv)
+                                                    dat <<= 1;
+                                                else
+                                                    dat >>= 1;
+                                                continue;
+                                            }
+                                            if (!scaninv)
+                                            {
+                                                dat <<= 1;
+                                                if (modmap.GetPixel(x, hv).R != 255)
+                                                    dat++;
+                                            }
+                                            else
+                                            {
+                                                dat >>= 1;
+                                                if (modmap.GetPixel(x, hv).R != 255)
+                                                    dat |= 0x80;
+                                            }
+                                        }
+                                        if (bitinv)
+                                            data.WriteByte((byte)~dat);
+                                        else
+                                            data.WriteByte((byte)dat);
+                                    }
+                                }
+                            break;
+                    }
+                }
+            }
+            return data;
+        }
+
+        private void buildfontlibbutton10_Click(object sender, EventArgs e)
+        {
+            sf.Filter = "字库数据|*.dat";
+            if (sf.ShowDialog() == DialogResult.OK)
+            {
+                var ms = buildall(((Control)sender).Tag!=null);
+                FileStream fs = new FileStream(sf.FileName, FileMode.OpenOrCreate);
+                var data = ms.ToArray();
+                fs.Write(data, 0, data.Length);
+                fs.Flush();
+                fs.Close();
+                ms.Dispose();
+            }
+        }
+
+        private void fontsomtcheckBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if(fontsomtcheckBox3.Checked)
+                moddraw.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+            else
+                moddraw.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+        }
+
         private void BitmapView_MouseClick(object sender, MouseEventArgs e)
         {
             BitmapView_MouseMove(null, e);
@@ -891,6 +1173,7 @@ namespace LCDImageSize
         {
             if (imglist.SelectedIndex == -1) return;
             selectmap = ((img)imglist.SelectedItem).map;
+            selectimg = (img)imglist.SelectedItem;
             updateDisplay();
         }
     }

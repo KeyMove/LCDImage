@@ -22,6 +22,21 @@ namespace LCDImageSize
             return new Size(w, h);
         }
 
+        public bool TYPE()
+        {
+            return textselectradioButton1.Checked;
+        }
+
+        public string TEXTValue()
+        {
+            return TextValue.Text;
+        }
+
+        public int stringoffset()
+        {
+            return textsizecomboBox1.SelectedIndex + 2;
+        }
+
         int w, h;
 
         private void IntInput(object sender, KeyPressEventArgs e)
@@ -33,10 +48,25 @@ namespace LCDImageSize
 
         }
 
+        private void textselectradioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            WidthValue.Enabled = !textselectradioButton1.Checked;
+            HeightValue.Enabled = !textselectradioButton1.Checked;
+            TextValue.Enabled = textselectradioButton1.Checked;
+            textsizecomboBox1.Enabled = textselectradioButton1.Checked;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            w = int.Parse(WidthValue.Text);
-            h = int.Parse(HeightValue.Text);
+            if (textselectradioButton1.Checked)
+            {
+                h = w = int.Parse(textsizecomboBox1.Text);
+            }
+            else
+            {
+                w = int.Parse(WidthValue.Text);
+                h = int.Parse(HeightValue.Text);
+            }
         }
     }
 }
