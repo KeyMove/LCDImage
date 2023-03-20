@@ -72,8 +72,22 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.layerpanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.layercontrol = new System.Windows.Forms.TabControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button11 = new System.Windows.Forms.Button();
+            this.b_newlayer = new System.Windows.Forms.Button();
+            this.layerlistView1 = new System.Windows.Forms.ListView();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.LayerObjectView = new System.Windows.Forms.TreeView();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.LayerImageView = new System.Windows.Forms.TreeView();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.segspcchar = new System.Windows.Forms.CheckBox();
             this.seginv = new System.Windows.Forms.CheckBox();
@@ -98,20 +112,46 @@
             this.fontb0b7CB = new System.Windows.Forms.CheckBox();
             this.fonta1a9CB = new System.Windows.Forms.CheckBox();
             this.fontprepictureBox1 = new System.Windows.Forms.PictureBox();
-            this.layerlistView1 = new System.Windows.Forms.ListView();
-            this.layercontrol = new System.Windows.Forms.TabControl();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.b_newlayer = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.LayerObjectView = new System.Windows.Forms.TreeView();
-            this.LayerImageView = new System.Windows.Forms.TreeView();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
+            this.buildallimg = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tb_uartrx = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tb_uarttx = new System.Windows.Forms.TextBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.uartsend = new System.Windows.Forms.Button();
+            this.tabControl4 = new System.Windows.Forms.TabControl();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.uartfastsendpanel = new System.Windows.Forms.Panel();
+            this.uart_tp_text = new System.Windows.Forms.TextBox();
+            this.uart_tp_send = new System.Windows.Forms.Button();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.uart_tp_check = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.uart_clearrx = new System.Windows.Forms.Button();
             this.Showpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BitmapView)).BeginInit();
             this.dataoutmenu.SuspendLayout();
@@ -128,17 +168,33 @@
             this.tabPage6.SuspendLayout();
             this.layerpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel7.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.layercontrol.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LEDOUTBOX)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fontprepictureBox1)).BeginInit();
-            this.layercontrol.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            this.tabPage8.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabPage10.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.tabControl4.SuspendLayout();
+            this.tabPage12.SuspendLayout();
+            this.tabPage13.SuspendLayout();
+            this.uartfastsendpanel.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // Showpanel
@@ -180,12 +236,13 @@
             // 
             // imglist
             // 
+            this.imglist.Dock = System.Windows.Forms.DockStyle.Top;
             this.imglist.FormattingEnabled = true;
             this.imglist.HorizontalScrollbar = true;
             this.imglist.ItemHeight = 12;
-            this.imglist.Location = new System.Drawing.Point(0, 0);
+            this.imglist.Location = new System.Drawing.Point(3, 3);
             this.imglist.Name = "imglist";
-            this.imglist.Size = new System.Drawing.Size(126, 256);
+            this.imglist.Size = new System.Drawing.Size(132, 256);
             this.imglist.TabIndex = 1;
             this.imglist.SelectedIndexChanged += new System.EventHandler(this.imglist_SelectedIndexChanged);
             // 
@@ -225,7 +282,7 @@
             // 
             // addimg
             // 
-            this.addimg.Location = new System.Drawing.Point(0, 268);
+            this.addimg.Location = new System.Drawing.Point(7, 268);
             this.addimg.Name = "addimg";
             this.addimg.Size = new System.Drawing.Size(60, 23);
             this.addimg.TabIndex = 3;
@@ -236,7 +293,7 @@
             // grayval
             // 
             this.grayval.BackColor = System.Drawing.Color.White;
-            this.grayval.Location = new System.Drawing.Point(0, 369);
+            this.grayval.Location = new System.Drawing.Point(7, 369);
             this.grayval.Maximum = 100;
             this.grayval.Name = "grayval";
             this.grayval.Size = new System.Drawing.Size(126, 45);
@@ -247,7 +304,7 @@
             // 
             // rmimg
             // 
-            this.rmimg.Location = new System.Drawing.Point(63, 268);
+            this.rmimg.Location = new System.Drawing.Point(70, 268);
             this.rmimg.Name = "rmimg";
             this.rmimg.Size = new System.Drawing.Size(60, 23);
             this.rmimg.TabIndex = 3;
@@ -257,7 +314,7 @@
             // 
             // editimg
             // 
-            this.editimg.Location = new System.Drawing.Point(0, 326);
+            this.editimg.Location = new System.Drawing.Point(7, 326);
             this.editimg.Name = "editimg";
             this.editimg.Size = new System.Drawing.Size(60, 23);
             this.editimg.TabIndex = 5;
@@ -269,7 +326,7 @@
             // 
             this.build.Location = new System.Drawing.Point(1, 419);
             this.build.Name = "build";
-            this.build.Size = new System.Drawing.Size(134, 31);
+            this.build.Size = new System.Drawing.Size(68, 31);
             this.build.TabIndex = 5;
             this.build.Text = "生成";
             this.build.UseVisualStyleBackColor = true;
@@ -277,7 +334,7 @@
             // 
             // newimage
             // 
-            this.newimage.Location = new System.Drawing.Point(0, 297);
+            this.newimage.Location = new System.Drawing.Point(7, 297);
             this.newimage.Name = "newimage";
             this.newimage.Size = new System.Drawing.Size(60, 23);
             this.newimage.TabIndex = 6;
@@ -403,6 +460,7 @@
             // 
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.imglist);
+            this.tabPage1.Controls.Add(this.buildallimg);
             this.tabPage1.Controls.Add(this.build);
             this.tabPage1.Controls.Add(this.addimg);
             this.tabPage1.Controls.Add(this.resizebutton);
@@ -422,7 +480,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 354);
+            this.label1.Location = new System.Drawing.Point(13, 354);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 7;
@@ -430,7 +488,7 @@
             // 
             // resizebutton
             // 
-            this.resizebutton.Location = new System.Drawing.Point(63, 326);
+            this.resizebutton.Location = new System.Drawing.Point(70, 326);
             this.resizebutton.Name = "resizebutton";
             this.resizebutton.Size = new System.Drawing.Size(60, 23);
             this.resizebutton.TabIndex = 6;
@@ -440,7 +498,7 @@
             // 
             // saveimg
             // 
-            this.saveimg.Location = new System.Drawing.Point(63, 297);
+            this.saveimg.Location = new System.Drawing.Point(70, 297);
             this.saveimg.Name = "saveimg";
             this.saveimg.Size = new System.Drawing.Size(60, 23);
             this.saveimg.TabIndex = 6;
@@ -509,6 +567,7 @@
             this.tabControl2.Controls.Add(this.tabPage6);
             this.tabControl2.Controls.Add(this.tabPage4);
             this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Controls.Add(this.tabPage9);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
             this.tabControl2.Name = "tabControl2";
@@ -593,6 +652,24 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label9);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel7.Location = new System.Drawing.Point(0, 374);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(574, 20);
+            this.panel7.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 5);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 12);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "输出:";
+            // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -610,6 +687,131 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(183, 483);
             this.panel3.TabIndex = 0;
+            // 
+            // layercontrol
+            // 
+            this.layercontrol.Controls.Add(this.tabPage7);
+            this.layercontrol.Controls.Add(this.tabPage8);
+            this.layercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layercontrol.Location = new System.Drawing.Point(0, 0);
+            this.layercontrol.Name = "layercontrol";
+            this.layercontrol.SelectedIndex = 0;
+            this.layercontrol.Size = new System.Drawing.Size(183, 483);
+            this.layercontrol.TabIndex = 1;
+            this.layercontrol.SelectedIndexChanged += new System.EventHandler(this.layercontrol_SelectedIndexChanged);
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.button13);
+            this.tabPage7.Controls.Add(this.button14);
+            this.tabPage7.Controls.Add(this.button12);
+            this.tabPage7.Controls.Add(this.button11);
+            this.tabPage7.Controls.Add(this.b_newlayer);
+            this.tabPage7.Controls.Add(this.layerlistView1);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(175, 457);
+            this.tabPage7.TabIndex = 0;
+            this.tabPage7.Text = "图层编辑";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(94, 280);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(78, 37);
+            this.button11.TabIndex = 1;
+            this.button11.Text = "删除图层";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.b_newlayer_Click);
+            // 
+            // b_newlayer
+            // 
+            this.b_newlayer.Location = new System.Drawing.Point(3, 280);
+            this.b_newlayer.Name = "b_newlayer";
+            this.b_newlayer.Size = new System.Drawing.Size(78, 37);
+            this.b_newlayer.TabIndex = 1;
+            this.b_newlayer.Text = "新建图层";
+            this.b_newlayer.UseVisualStyleBackColor = true;
+            this.b_newlayer.Click += new System.EventHandler(this.b_newlayer_Click);
+            // 
+            // layerlistView1
+            // 
+            this.layerlistView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.layerlistView1.HideSelection = false;
+            this.layerlistView1.Location = new System.Drawing.Point(3, 3);
+            this.layerlistView1.Name = "layerlistView1";
+            this.layerlistView1.Size = new System.Drawing.Size(169, 271);
+            this.layerlistView1.TabIndex = 0;
+            this.layerlistView1.UseCompatibleStateImageBehavior = false;
+            this.layerlistView1.SelectedIndexChanged += new System.EventHandler(this.layerlistView1_SelectedIndexChanged);
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.LayerObjectView);
+            this.tabPage8.Controls.Add(this.panel6);
+            this.tabPage8.Controls.Add(this.LayerImageView);
+            this.tabPage8.Controls.Add(this.panel5);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(175, 457);
+            this.tabPage8.TabIndex = 1;
+            this.tabPage8.Text = "图层布局";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // LayerObjectView
+            // 
+            this.LayerObjectView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayerObjectView.Location = new System.Drawing.Point(3, 248);
+            this.LayerObjectView.Name = "LayerObjectView";
+            this.LayerObjectView.Size = new System.Drawing.Size(169, 206);
+            this.LayerObjectView.TabIndex = 3;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label8);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(3, 230);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(169, 18);
+            this.panel6.TabIndex = 2;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(0, 3);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 12);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "对象列表:";
+            // 
+            // LayerImageView
+            // 
+            this.LayerImageView.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LayerImageView.Location = new System.Drawing.Point(3, 21);
+            this.LayerImageView.Name = "LayerImageView";
+            this.LayerImageView.Size = new System.Drawing.Size(169, 209);
+            this.LayerImageView.TabIndex = 4;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label7);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(169, 18);
+            this.panel5.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 4);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 12);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "图片库:";
             // 
             // tabPage4
             // 
@@ -877,145 +1079,412 @@
             this.fontprepictureBox1.TabIndex = 0;
             this.fontprepictureBox1.TabStop = false;
             // 
-            // layerlistView1
+            // buildallimg
             // 
-            this.layerlistView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.layerlistView1.HideSelection = false;
-            this.layerlistView1.Location = new System.Drawing.Point(3, 3);
-            this.layerlistView1.Name = "layerlistView1";
-            this.layerlistView1.Size = new System.Drawing.Size(169, 271);
-            this.layerlistView1.TabIndex = 0;
-            this.layerlistView1.UseCompatibleStateImageBehavior = false;
-            this.layerlistView1.SelectedIndexChanged += new System.EventHandler(this.layerlistView1_SelectedIndexChanged);
+            this.buildallimg.Location = new System.Drawing.Point(69, 419);
+            this.buildallimg.Name = "buildallimg";
+            this.buildallimg.Size = new System.Drawing.Size(68, 31);
+            this.buildallimg.TabIndex = 5;
+            this.buildallimg.Text = "生成全部";
+            this.buildallimg.UseVisualStyleBackColor = true;
+            this.buildallimg.Click += new System.EventHandler(this.buildallimg_Click);
             // 
-            // layercontrol
+            // button12
             // 
-            this.layercontrol.Controls.Add(this.tabPage7);
-            this.layercontrol.Controls.Add(this.tabPage8);
-            this.layercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layercontrol.Location = new System.Drawing.Point(0, 0);
-            this.layercontrol.Name = "layercontrol";
-            this.layercontrol.SelectedIndex = 0;
-            this.layercontrol.Size = new System.Drawing.Size(183, 483);
-            this.layercontrol.TabIndex = 1;
-            this.layercontrol.SelectedIndexChanged += new System.EventHandler(this.layercontrol_SelectedIndexChanged);
+            this.button12.Location = new System.Drawing.Point(3, 323);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(78, 37);
+            this.button12.TabIndex = 1;
+            this.button12.Text = "加载图层";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.b_newlayer_Click);
             // 
-            // tabPage7
+            // button13
             // 
-            this.tabPage7.Controls.Add(this.button11);
-            this.tabPage7.Controls.Add(this.b_newlayer);
-            this.tabPage7.Controls.Add(this.layerlistView1);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(175, 457);
-            this.tabPage7.TabIndex = 0;
-            this.tabPage7.Text = "图层编辑";
-            this.tabPage7.UseVisualStyleBackColor = true;
+            this.button13.Location = new System.Drawing.Point(94, 323);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(78, 37);
+            this.button13.TabIndex = 1;
+            this.button13.Text = "保存图层";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.b_newlayer_Click);
             // 
-            // tabPage8
+            // button14
             // 
-            this.tabPage8.Controls.Add(this.LayerObjectView);
-            this.tabPage8.Controls.Add(this.panel6);
-            this.tabPage8.Controls.Add(this.LayerImageView);
-            this.tabPage8.Controls.Add(this.panel5);
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(175, 457);
-            this.tabPage8.TabIndex = 1;
-            this.tabPage8.Text = "图层布局";
-            this.tabPage8.UseVisualStyleBackColor = true;
+            this.button14.Location = new System.Drawing.Point(6, 414);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(163, 37);
+            this.button14.TabIndex = 1;
+            this.button14.Text = "生成代码";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.b_newlayer_Click);
             // 
-            // b_newlayer
+            // tabPage9
             // 
-            this.b_newlayer.Location = new System.Drawing.Point(3, 280);
-            this.b_newlayer.Name = "b_newlayer";
-            this.b_newlayer.Size = new System.Drawing.Size(78, 37);
-            this.b_newlayer.TabIndex = 1;
-            this.b_newlayer.Text = "新建图层";
-            this.b_newlayer.UseVisualStyleBackColor = true;
-            this.b_newlayer.Click += new System.EventHandler(this.b_newlayer_Click);
+            this.tabPage9.Controls.Add(this.tabControl3);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(757, 483);
+            this.tabPage9.TabIndex = 4;
+            this.tabPage9.Text = "调试";
+            this.tabPage9.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // tabControl3
             // 
-            this.button11.Location = new System.Drawing.Point(94, 280);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(78, 37);
-            this.button11.TabIndex = 1;
-            this.button11.Text = "删除图层";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.b_newlayer_Click);
+            this.tabControl3.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.tabControl3.Controls.Add(this.tabPage10);
+            this.tabControl3.Controls.Add(this.tabPage11);
+            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl3.Location = new System.Drawing.Point(0, 0);
+            this.tabControl3.Multiline = true;
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(757, 483);
+            this.tabControl3.TabIndex = 0;
             // 
-            // panel5
+            // tabPage10
             // 
-            this.panel5.Controls.Add(this.label7);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(3, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(169, 18);
-            this.panel5.TabIndex = 1;
+            this.tabPage10.Controls.Add(this.groupBox5);
+            this.tabPage10.Controls.Add(this.panel8);
+            this.tabPage10.Location = new System.Drawing.Point(22, 4);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage10.Size = new System.Drawing.Size(731, 475);
+            this.tabPage10.TabIndex = 0;
+            this.tabPage10.Text = "串口助手";
+            this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // tabPage11
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 4);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 12);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "图片库:";
+            this.tabPage11.Location = new System.Drawing.Point(22, 4);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage11.Size = new System.Drawing.Size(731, 475);
+            this.tabPage11.TabIndex = 1;
+            this.tabPage11.Text = "SWD";
+            this.tabPage11.UseVisualStyleBackColor = true;
             // 
-            // panel6
+            // groupBox3
             // 
-            this.panel6.Controls.Add(this.label8);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(3, 230);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(169, 18);
-            this.panel6.TabIndex = 2;
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox3.Location = new System.Drawing.Point(0, 375);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(288, 94);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "串口设置";
             // 
-            // label8
+            // tb_uartrx
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(0, 3);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 12);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "对象列表:";
+            this.tb_uartrx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_uartrx.Location = new System.Drawing.Point(3, 17);
+            this.tb_uartrx.Multiline = true;
+            this.tb_uartrx.Name = "tb_uartrx";
+            this.tb_uartrx.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tb_uartrx.Size = new System.Drawing.Size(431, 287);
+            this.tb_uartrx.TabIndex = 1;
             // 
-            // LayerObjectView
+            // groupBox4
             // 
-            this.LayerObjectView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayerObjectView.Location = new System.Drawing.Point(3, 248);
-            this.LayerObjectView.Name = "LayerObjectView";
-            this.LayerObjectView.Size = new System.Drawing.Size(169, 206);
-            this.LayerObjectView.TabIndex = 3;
+            this.groupBox4.Controls.Add(this.tabControl4);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(288, 375);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "快捷发送";
             // 
-            // LayerImageView
+            // panel8
             // 
-            this.LayerImageView.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LayerImageView.Location = new System.Drawing.Point(3, 21);
-            this.LayerImageView.Name = "LayerImageView";
-            this.LayerImageView.Size = new System.Drawing.Size(169, 209);
-            this.LayerImageView.TabIndex = 4;
+            this.panel8.Controls.Add(this.groupBox4);
+            this.panel8.Controls.Add(this.groupBox3);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel8.Location = new System.Drawing.Point(440, 3);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(288, 469);
+            this.panel8.TabIndex = 3;
             // 
-            // panel7
+            // groupBox5
             // 
-            this.panel7.Controls.Add(this.label9);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 374);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(574, 20);
-            this.panel7.TabIndex = 1;
+            this.groupBox5.Controls.Add(this.tb_uartrx);
+            this.groupBox5.Controls.Add(this.panel11);
+            this.groupBox5.Controls.Add(this.panel10);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox5.Location = new System.Drawing.Point(3, 3);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(437, 469);
+            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "收发区";
             // 
-            // label9
+            // tb_uarttx
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 5);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 12);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "输出:";
+            this.tb_uarttx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_uarttx.Location = new System.Drawing.Point(0, 0);
+            this.tb_uarttx.Multiline = true;
+            this.tb_uarttx.Name = "tb_uarttx";
+            this.tb_uarttx.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tb_uarttx.Size = new System.Drawing.Size(354, 131);
+            this.tb_uarttx.TabIndex = 1;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.uartsend);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel9.Location = new System.Drawing.Point(354, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(77, 131);
+            this.panel9.TabIndex = 2;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.tb_uarttx);
+            this.panel10.Controls.Add(this.panel9);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel10.Location = new System.Drawing.Point(3, 335);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(431, 131);
+            this.panel10.TabIndex = 3;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.uart_clearrx);
+            this.panel11.Controls.Add(this.label11);
+            this.panel11.Controls.Add(this.label10);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel11.Location = new System.Drawing.Point(3, 304);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(431, 31);
+            this.panel11.TabIndex = 4;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 12);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "接收区↑";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 12);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "发送区↓";
+            // 
+            // uartsend
+            // 
+            this.uartsend.Location = new System.Drawing.Point(2, 105);
+            this.uartsend.Name = "uartsend";
+            this.uartsend.Size = new System.Drawing.Size(72, 23);
+            this.uartsend.TabIndex = 0;
+            this.uartsend.Text = "发送";
+            this.uartsend.UseVisualStyleBackColor = true;
+            this.uartsend.Click += new System.EventHandler(this.uartsend_Click);
+            // 
+            // tabControl4
+            // 
+            this.tabControl4.Controls.Add(this.tabPage12);
+            this.tabControl4.Controls.Add(this.tabPage13);
+            this.tabControl4.Controls.Add(this.tabPage14);
+            this.tabControl4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl4.Location = new System.Drawing.Point(3, 17);
+            this.tabControl4.Name = "tabControl4";
+            this.tabControl4.SelectedIndex = 0;
+            this.tabControl4.Size = new System.Drawing.Size(282, 355);
+            this.tabControl4.TabIndex = 0;
+            // 
+            // tabPage12
+            // 
+            this.tabPage12.Controls.Add(this.uartfastsendpanel);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage12.Size = new System.Drawing.Size(274, 329);
+            this.tabPage12.TabIndex = 0;
+            this.tabPage12.Text = "字符";
+            this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.Controls.Add(this.dataGridView1);
+            this.tabPage13.Controls.Add(this.panel13);
+            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage13.Size = new System.Drawing.Size(274, 329);
+            this.tabPage13.TabIndex = 1;
+            this.tabPage13.Text = "modbus";
+            this.tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // tabPage14
+            // 
+            this.tabPage14.Location = new System.Drawing.Point(4, 22);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Size = new System.Drawing.Size(274, 329);
+            this.tabPage14.TabIndex = 2;
+            this.tabPage14.Text = "can";
+            this.tabPage14.UseVisualStyleBackColor = true;
+            // 
+            // uartfastsendpanel
+            // 
+            this.uartfastsendpanel.AutoScroll = true;
+            this.uartfastsendpanel.Controls.Add(this.uart_tp_check);
+            this.uartfastsendpanel.Controls.Add(this.panel12);
+            this.uartfastsendpanel.Controls.Add(this.uart_tp_send);
+            this.uartfastsendpanel.Controls.Add(this.uart_tp_text);
+            this.uartfastsendpanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uartfastsendpanel.Location = new System.Drawing.Point(3, 3);
+            this.uartfastsendpanel.Name = "uartfastsendpanel";
+            this.uartfastsendpanel.Size = new System.Drawing.Size(268, 323);
+            this.uartfastsendpanel.TabIndex = 0;
+            // 
+            // uart_tp_text
+            // 
+            this.uart_tp_text.Location = new System.Drawing.Point(18, 21);
+            this.uart_tp_text.Name = "uart_tp_text";
+            this.uart_tp_text.Size = new System.Drawing.Size(200, 21);
+            this.uart_tp_text.TabIndex = 0;
+            this.uart_tp_text.Visible = false;
+            // 
+            // uart_tp_send
+            // 
+            this.uart_tp_send.Location = new System.Drawing.Point(218, 20);
+            this.uart_tp_send.Name = "uart_tp_send";
+            this.uart_tp_send.Size = new System.Drawing.Size(30, 23);
+            this.uart_tp_send.TabIndex = 1;
+            this.uart_tp_send.Text = "99";
+            this.uart_tp_send.UseVisualStyleBackColor = true;
+            this.uart_tp_send.Visible = false;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.label14);
+            this.panel12.Controls.Add(this.label13);
+            this.panel12.Controls.Add(this.label12);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(268, 19);
+            this.panel12.TabIndex = 2;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(2, 4);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(23, 12);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Hex";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(109, 3);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(53, 12);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "发送内容";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(217, 4);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(29, 12);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "编号";
+            // 
+            // uart_tp_check
+            // 
+            this.uart_tp_check.AutoSize = true;
+            this.uart_tp_check.Location = new System.Drawing.Point(3, 25);
+            this.uart_tp_check.Name = "uart_tp_check";
+            this.uart_tp_check.Size = new System.Drawing.Size(15, 14);
+            this.uart_tp_check.TabIndex = 3;
+            this.uart_tp_check.UseVisualStyleBackColor = true;
+            this.uart_tp_check.Visible = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(117, 18);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(71, 21);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "1";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(115, 3);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(53, 12);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "从站地址";
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.checkBox1);
+            this.panel13.Controls.Add(this.textBox2);
+            this.panel13.Controls.Add(this.label16);
+            this.panel13.Controls.Add(this.textBox1);
+            this.panel13.Controls.Add(this.label15);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(3, 3);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(268, 43);
+            this.panel13.TabIndex = 2;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(192, 3);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(77, 12);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "轮询时间(ms)";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(194, 18);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(71, 21);
+            this.textBox2.TabIndex = 0;
+            this.textBox2.Text = "500";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(18, 14);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(72, 16);
+            this.checkBox1.TabIndex = 2;
+            this.checkBox1.Text = "开始轮询";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 46);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(268, 280);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // uart_clearrx
+            // 
+            this.uart_clearrx.Location = new System.Drawing.Point(353, 4);
+            this.uart_clearrx.Name = "uart_clearrx";
+            this.uart_clearrx.Size = new System.Drawing.Size(75, 23);
+            this.uart_clearrx.TabIndex = 1;
+            this.uart_clearrx.Text = "清空接收";
+            this.uart_clearrx.UseVisualStyleBackColor = true;
+            this.uart_clearrx.Click += new System.EventHandler(this.uart_clearrx_Click);
             // 
             // Form1
             // 
@@ -1050,22 +1519,44 @@
             this.tabPage6.ResumeLayout(false);
             this.layerpanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.layercontrol.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LEDOUTBOX)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fontprepictureBox1)).EndInit();
-            this.layercontrol.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage8.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
+            this.tabControl3.ResumeLayout(false);
+            this.tabPage10.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.tabControl4.ResumeLayout(false);
+            this.tabPage12.ResumeLayout(false);
+            this.tabPage13.ResumeLayout(false);
+            this.uartfastsendpanel.ResumeLayout(false);
+            this.uartfastsendpanel.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1154,6 +1645,46 @@
         private System.Windows.Forms.TreeView LayerImageView;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button buildallimg;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.TextBox tb_uartrx;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.TextBox tb_uarttx;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Button uartsend;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TabControl tabControl4;
+        private System.Windows.Forms.TabPage tabPage12;
+        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.TabPage tabPage14;
+        private System.Windows.Forms.Panel uartfastsendpanel;
+        private System.Windows.Forms.CheckBox uart_tp_check;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button uart_tp_send;
+        private System.Windows.Forms.TextBox uart_tp_text;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button uart_clearrx;
     }
 }
 

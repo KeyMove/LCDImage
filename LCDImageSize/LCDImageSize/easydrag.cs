@@ -110,7 +110,7 @@ namespace LCDImageSize
                 Bitmap img = e.Data.GetData(typeof(Bitmap)) as Bitmap;
                 if (img == null) return;
                 var p = ScalPoint(dst.PointToClient(new Point(e.X, e.Y)));
-                list.Add(new dragObject() { box = new Rectangle(p.X, p.Y, img.Width, img.Height), map = img, mapdata = toBin(img, Fit) });
+                list.Add(new dragObject() { box = new Rectangle(p.X, p.Y, img.Width, img.Height), map = img, mapdata = toBin(img, (img.Tag==null?Fit:(int)img.Tag)) });
                 updateAll();
             };
             
@@ -420,7 +420,7 @@ namespace LCDImageSize
             return nbit;
         }
 
-        void updateAll()
+        public void updateAll()
         {
             if (mainMap == null) return;
             if (scalsize != lastscal)

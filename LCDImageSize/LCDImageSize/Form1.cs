@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PIDHelper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,7 +21,7 @@ namespace LCDImageSize
         byte[] BV = new byte[256];
 
         byte[] data;
-
+        COMHelper COM;
         public Form1()
         {
             InitializeComponent();
@@ -48,6 +49,39 @@ namespace LCDImageSize
             easydrag.setDrag = LayerImageView;
             newLayer.Icon = Icon;
             newLayer.StartPosition = FormStartPosition.CenterParent;
+
+
+            COM = new COMHelper(groupBox3, tb_uartrx, null);
+            List<TextBox> textlist = new List<TextBox>();
+            
+            for(int i = 0; i < 16; i++)
+            {
+                CheckBox cb = new CheckBox() { AutoSize = true, Text = "", Location = new Point(uart_tp_check.Left, uart_tp_check.Top + i * 25) };
+                TextBox tb = new TextBox() { Tag = cb, Location = new Point(uart_tp_text.Left, uart_tp_text.Top + i * 25), Size = uart_tp_text.Size };
+                Button bt = new Button() { Tag = tb, Text = "" + i, Location = new Point(uart_tp_send.Left, uart_tp_send.Top + i * 25), Size = uart_tp_send.Size };
+                bt.Click += (s, e) => { 
+                    TextBox t=bt.Tag as TextBox;
+                    if((t.Tag as CheckBox).Checked)
+                    {
+                        List<byte> list = new List<byte>();
+                        foreach(var v in t.Text.Split(' '))
+                        {
+                            if (v.Length < 2) continue;
+                            var vv = v.ToUpper().Replace("0X", "");
+                            list.Add(Convert.ToByte(vv));
+                        }
+                        COM.SendUartData(list.ToArray());
+                    }
+                    else
+                    {
+                        COM.SendUartData(t.Text);
+                    }
+                };
+                textlist.Add(tb);
+                uartfastsendpanel.Controls.Add(cb);
+                uartfastsendpanel.Controls.Add(tb);
+                uartfastsendpanel.Controls.Add(bt);
+            }
         }
 
         private void BitmapView_MouseWheel(object sender, MouseEventArgs e)
@@ -80,12 +114,15 @@ namespace LCDImageSize
         int scalsize = 5;
         byte[,] mapdata;
         int[] datacount = new int[256];
+
+        
         class img
         {
             public string name;
             public Bitmap map;
             public bool isString;
             public string info;
+            public int fit=128;
             public img(string n, Bitmap m)
             {
                 name = n;
@@ -317,7 +354,7 @@ namespace LCDImageSize
             TextInput.Visible=((img)imglist.SelectedItem).isString;
             if (TextInput.Visible)
                 TextInput.Text = ((img)imglist.SelectedItem).info;
-            Bitmap map = toBin(((img)imglist.SelectedItem).map,(int)(grayval.Value*2.55));
+            Bitmap map = toBin(((img)imglist.SelectedItem).map, (int)((img)imglist.SelectedItem).map.Tag);
             BitmapView.Image = toPointMap(map, scalsize);
             BitmapView.Width = BitmapView.Image.Width;
             BitmapView.Height = BitmapView.Image.Height;
@@ -421,6 +458,7 @@ namespace LCDImageSize
 
         private void grayval_Scroll(object sender, EventArgs e)
         {
+            selectimg.map.Tag=selectimg.fit = (int)(grayval.Value * 2.55);
             updateDisplay();
         }
 
@@ -915,7 +953,12 @@ namespace LCDImageSize
                     else
                     {
                         Size s = np.getSize();
-                        Bitmap bs = new Bitmap(s.Width * str.Length, s.Height);
+                        int len=0;
+                        foreach(var ss in str)
+                            if (ss > 127)
+                                len += 2;
+                            else len += 1;
+                        Bitmap bs = new Bitmap(s.Width*len/2, s.Height);
                         Graphics gx = Graphics.FromImage(bs);
                         gx.Clear(Color.White);
                         gx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
@@ -1010,7 +1053,9 @@ namespace LCDImageSize
             if (resizeimg.ShowDialog() == DialogResult.OK)
             {
                 Size s = resizeimg.ImgSize;
+                int gray = (int)selectmap.Tag;
                 ((img)imglist.SelectedItem).map = selectmap = ImageResize(selectmap, s.Width, s.Height);
+                selectmap.Tag = gray;
                 updateDisplay();
             }
         }
@@ -1327,7 +1372,49 @@ namespace LCDImageSize
             layerpanel.Controls.Clear();
             selectdrag = layerlistView1.SelectedItems[0].Tag as easydrag;
             layerpanel.Controls.Add(selectdrag.Control);
+            selectdrag.updateAll();
+        }
 
+        private void buildallimg_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int k=0;k<imglist.Items.Count;k++)
+            {
+                imglist.SelectedItem = imglist.Items[k];
+                byte[] imgdata = imgtoByte();
+                if (imgdata == null)
+                {
+                    MessageBox.Show("图片无效");
+                    continue;
+                }
+                
+                sb.AppendLine("//图片[" + ((img)imglist.SelectedItem).name + "] " + selectmap.Width + "x" + selectmap.Height);
+                if (enablezip.Checked)
+                {
+                    imgdata = encode(imgdata, zipmode.SelectedIndex);
+                }
+                for (int i = 0; i < imgdata.Length; i++)
+                {
+                    if ((i % 16) == 0)
+                    {
+                        sb.AppendLine();
+                    }
+                    sb.AppendFormat(strformat, imgdata[i]);
+                }
+                sb.AppendLine();
+            }
+            OutPutData.Text = sb.ToString();
+
+        }
+
+        private void uartsend_Click(object sender, EventArgs e)
+        {
+            COM.SendUartData(tb_uarttx.Text);
+        }
+
+        private void uart_clearrx_Click(object sender, EventArgs e)
+        {
+            tb_uartrx.Text = "";
         }
 
         private void BitmapView_MouseClick(object sender, MouseEventArgs e)
@@ -1370,6 +1457,9 @@ namespace LCDImageSize
         {
             if (imglist.SelectedIndex == -1) return;
             selectmap = ((img)imglist.SelectedItem).map;
+            if (selectmap.Tag == null)
+                selectmap.Tag = 128;
+            grayval.Value= (int)((int)selectmap.Tag/2.55);
             selectimg = (img)imglist.SelectedItem;
             editlock.Checked = selectimg.isString;
             updateDisplay();
