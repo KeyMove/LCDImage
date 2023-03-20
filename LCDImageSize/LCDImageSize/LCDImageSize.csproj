@@ -50,11 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="easydrag.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newLayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newLayer.Designer.cs">
+      <DependentUpon>newLayer.cs</DependentUpon>
     </Compile>
     <Compile Include="NewPanle.cs">
       <SubType>Form</SubType>
@@ -78,6 +85,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newLayer.resx">
+      <DependentUpon>newLayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewPanle.resx">
       <DependentUpon>NewPanle.cs</DependentUpon>

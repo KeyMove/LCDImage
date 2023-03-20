@@ -37,6 +37,7 @@
             this.picselectradioButton2 = new System.Windows.Forms.RadioButton();
             this.TextValue = new System.Windows.Forms.TextBox();
             this.textsizecomboBox1 = new System.Windows.Forms.ComboBox();
+            this.sigchar = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -135,11 +136,23 @@
             this.textsizecomboBox1.TabIndex = 6;
             this.textsizecomboBox1.Text = "16";
             // 
+            // sigchar
+            // 
+            this.sigchar.AutoSize = true;
+            this.sigchar.Enabled = false;
+            this.sigchar.Location = new System.Drawing.Point(65, 85);
+            this.sigchar.Name = "sigchar";
+            this.sigchar.Size = new System.Drawing.Size(72, 16);
+            this.sigchar.TabIndex = 7;
+            this.sigchar.Text = "单字拆分";
+            this.sigchar.UseVisualStyleBackColor = true;
+            // 
             // NewPanle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(213, 167);
+            this.Controls.Add(this.sigchar);
             this.Controls.Add(this.textsizecomboBox1);
             this.Controls.Add(this.TextValue);
             this.Controls.Add(this.picselectradioButton2);
@@ -170,5 +183,6 @@
         private System.Windows.Forms.RadioButton picselectradioButton2;
         private System.Windows.Forms.TextBox TextValue;
         private System.Windows.Forms.ComboBox textsizecomboBox1;
+        private System.Windows.Forms.CheckBox sigchar;
     }
 }

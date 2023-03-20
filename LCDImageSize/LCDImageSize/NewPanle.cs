@@ -32,6 +32,11 @@ namespace LCDImageSize
             return TextValue.Text;
         }
 
+        public bool splittext()
+        {
+            return sigchar.Checked;
+        }
+
         public int stringoffset()
         {
             return textsizecomboBox1.SelectedIndex + 2;
@@ -54,6 +59,7 @@ namespace LCDImageSize
             HeightValue.Enabled = !textselectradioButton1.Checked;
             TextValue.Enabled = textselectradioButton1.Checked;
             textsizecomboBox1.Enabled = textselectradioButton1.Checked;
+            sigchar.Enabled=textselectradioButton1.Checked;
         }
 
         private void button1_Click(object sender, EventArgs e)

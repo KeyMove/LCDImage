@@ -44,6 +44,10 @@ namespace LCDImageSize
             moddraw.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
             selectfont = Font;
             fonttestTB_TextChanged(null, null);
+
+            easydrag.setDrag = LayerImageView;
+            newLayer.Icon = Icon;
+            newLayer.StartPosition = FormStartPosition.CenterParent;
         }
 
         private void BitmapView_MouseWheel(object sender, MouseEventArgs e)
@@ -106,31 +110,133 @@ namespace LCDImageSize
         Bitmap LEDmap = new Bitmap(240, 240);
         Graphics LEDDraw;
 
-        void DrawLED8()
+        void DrawLED8(List<Rectangle> rects=null, int b=0,List<int> sets=null)
         {
+            Rectangle r;
             int sx = 40;
             int sy = 20;
             string y = "AGD";
             string x = "FEBC";
             for (int i = 0; i < 3; i++)
             {
-                LEDDraw.FillRectangle(Brushes.Black, new Rectangle(sx, sy+i*80, 80, 20));
+                LEDDraw.FillRectangle((sets != null && (b & (1 << sets[y[i] - 'A'])) != 0) ? Brushes.Blue : Brushes.Black, r = new Rectangle(sx, sy + i * 80, 80, 20));
                 LEDDraw.DrawString(""+y[i], Font, Brushes.Red, sx + 80 / 2-4, sy + i * 80 + 4);
+                if (rects != null) rects[y[i] - 'A'] = r;
             }
             for (int i = 0; i < 2; i++)
             {
-                LEDDraw.FillRectangle(Brushes.Black, new Rectangle(sx-20+i*100, sy+20, 20, 80-20));
+                LEDDraw.FillRectangle((sets != null && (b & (1 << sets[x[i * 2] - 'A'])) != 0) ? Brushes.Blue : Brushes.Black, r= new Rectangle(sx-20+i*100, sy+20, 20, 80-20));
                 LEDDraw.DrawString("" + x[i*2], Font, Brushes.Red, sx - 20 + i * 100+4, sy + 20+60/2-4);
-                LEDDraw.FillRectangle(Brushes.Black, new Rectangle(sx-20+i*100, sy+20+80, 20, 80-20));
+                if (rects != null) rects[x[i * 2] - 'A'] = r;
+                LEDDraw.FillRectangle((sets != null && (b & (1 << sets[x[i * 2 + 1] - 'A'])) != 0) ? Brushes.Blue : Brushes.Black,r= new Rectangle(sx-20+i*100, sy+20+80, 20, 80-20));
                 LEDDraw.DrawString("" + x[i * 2+1], Font, Brushes.Red, sx - 20 + i * 100+4, sy + 20 + 80 + 60 / 2 - 4);
+                if (rects != null) rects[x[i * 2 + 1] - 'A'] = r;
             }
 
+            LEDDraw.FillRectangle((sets != null && (b & (1 << sets['H' - 'A'])) != 0) ? Brushes.Blue : Brushes.Black, r= new Rectangle(sx - 20 + 1 * 100+20, sy + 2 * 80, 20, 20));
+            LEDDraw.DrawString("H", Font, Brushes.Red, sx - 20 + 1 * 100+20+5, sy + 2 * 80+5);
+            if (rects != null) rects['H' - 'A'] = r;
         }
 
+        void updateLEDData(List<int> blist)
+        {
+            int[] numsets = {
+                '0', 0x3F, '1', 0x06, '2', 0x5B, '3', 0x4F,
+                '4', 0x66, '5', 0x6D, '6', 0x7D, '7', 0x07,
+                '8', 0x7F, '9', 0x6F
+            };
+            int[] defsets =  {
+                 'A', 0x77, 'a', 0x5F,
+                 'B', 0x7F, 'b', 0x7C, 'C', 0x39, 'c', 0x58,
+                 'D', 0x3F, 'd', 0x5E, 'E', 0x79, 'e', 0x7B,
+                 'F', 0x71, 'f', 0x71, 'G', 0x7D, 'g', 0x6F,
+                 'H', 0x76, 'h', 0x74, 'I', 0x06, 'i', 0x04,
+                 'J', 0x1E, 'j', 0x1E, 'L', 0x38, 'l', 0x06,
+                 'N', 0x37, 'n', 0x54, 'O', 0x3F, 'o', 0x5C,
+                 'P', 0x73, 'p', 0x73, 'Q', 0x67, 'q', 0x67,
+                 'R', 0x77, 'r', 0x50, 'S', 0x6D, 's', 0x6D,
+                 'T', 0x31, 't', 0x78, 'U', 0x3E, 'u', 0x1C,
+                 'Y', 0x6E, 'y', 0x6E, 'Z', 0x5B, 'z', 0x5B,
+                 '-', 0x40, '_', 0x08, '.', 0x80
+            };
+            LEDCODETEXT.Text = "";
+            for (int k = 0; k < numsets.Length; k += 2)
+            {
+                int n = numsets[k + 1];
+                int v = 0;
+                for (int j = 0; j < 8; j++)
+                {
+                    if (0 != (n & (1 << blist[j])))
+                        v |= (1 << blist[j]);
+                }
+                LEDCODETEXT.AppendText($"0x{(seginv.Checked ? (byte)~v : v):X02},//{(char)numsets[k]}\r\n");
+            }
+            LEDCODETEXT.AppendText("\r\n");
+
+            if (segspcchar.Checked)
+            {
+                for (int k = 0; k < defsets.Length; k += 2)
+                {
+                    int n = defsets[k + 1];
+                    int v = 0;
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (0 != (n & (1 << blist[j])))
+                            v |= (1 << blist[j]);
+                    }
+                    LEDCODETEXT.AppendText($"0x{(seginv.Checked ? (byte)~v : v):X02},//{(char)defsets[k]}\r\n");
+                }
+            }
+        }
         void UpdateLEDMap()
         {
-            DrawLED8();
+            var list = new List<Rectangle>();
+            list.AddRange(new Rectangle[8]);
+            DrawLED8(list);
+            var blist = new List<int>();
+            blist.AddRange(new int[8]);
+            var c = tabControl2.TabPages[2].Controls;
+            int value = 0;
+            for (int i = 0; i < blist.Count; i++)
+            {
+                blist[i] = i;
+            }
+            
+            for(int i=0;i<8;i++)
+            {
+                ComboBox cb;
+                c.Add(new Label() { Text=""+(char)('A'+i)+"->" ,AutoSize=true,Location=new Point(195, 43-25+i*26) });
+                c.Add(cb = new ComboBox() { Text = "BIT" + (char)(i + '0'), Size = new Size(54, 20), Location = new Point(222, 39 - 25 + i * 26), Items = { "BIT0", "BIT1", "BIT2", "BIT3", "BIT4", "BIT5", "BIT6", "BIT7", }, Tag = i }) ;
+                cb.SelectedIndexChanged += (s, e) =>
+                {
+                    var sc = (ComboBox)s;
+                    blist[(int)sc.Tag] = sc.SelectedIndex;
+                    updateLEDData(blist);
+                };
+            }
+            c.Add(new Label() { Text = "值:", AutoSize = true, Location = new Point(195, 43 - 25 + 8 * 26) });
+            TextBox b = new TextBox() { Size = new Size(54, 20), Location = new Point(222, 39 - 25 + 8 * 26),Text="0x00" };
+            c.Add(b);
+            LEDOUTBOX.MouseDown += (s, e) => { 
+                for(int i=0;i<8; i++)
+                {
+                    if (list[i].Contains(e.X, e.Y))
+                    {
+                        value ^= (1 << blist[i]);
+                        DrawLED8(null, value, blist);
+                        LEDOUTBOX.Image = LEDmap;
+                        b.Text = $"0x{value:X2}";
+                        return;
+                    }
+                }
+            };
             LEDOUTBOX.Image = LEDmap;
+            updateLEDData(blist);
+            seginv.CheckedChanged += (s, e) =>
+            {
+                updateLEDData(blist);
+            };
+            segspcchar.CheckedChanged += (s, e) => { updateLEDData(blist); };
         }
 
         void InitRGB()
@@ -338,7 +444,7 @@ namespace LCDImageSize
         private void BitmapView_MouseMove(object sender, MouseEventArgs e)
         {
             if(selectimg!=null)
-                if (selectimg.isString) return;
+                if (editlock.Checked) return;
             if (opttype != -1)
             {
                 int x = e.X / scalsize, y = e.Y / scalsize;
@@ -784,25 +890,47 @@ namespace LCDImageSize
                 {
                     var str = np.TEXTValue();
                     if (str.Length == 0) return;
-                    Size s = np.getSize();
-                    Bitmap bs = new Bitmap(s.Width, s.Height);
-                    Graphics gx = Graphics.FromImage(bs);
-                    gx.Clear(Color.White);
-                    gx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
-                    //var str=np.TEXTValue();
-                    if (str != "")
+                    if (np.splittext())
                     {
+                        foreach(var sstr in str)
+                        {
+                            Size s = np.getSize();
+                            Bitmap bs = new Bitmap(s.Width, s.Height);
+                            Graphics gx = Graphics.FromImage(bs);
+                            gx.Clear(Color.White);
+                            gx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+                            //var str=np.TEXTValue();
+                            using (Font f = new Font(Font.FontFamily, (s.Width * 72 / 96)))
+                            {
+                                gx.DrawString(sstr+"", f, Brushes.Black, 0 - np.stringoffset(), 0);
+                            }
+                            gx.Dispose();
+                            imglist.Items.Add(new img("字符" + count++, bs, sstr+""));
+                            if (imglist.SelectedIndex == -1)
+                                imglist.SelectedIndex = 0;
+                            selectmap = ((img)imglist.SelectedItem).map;
+                        }
+                        updateDisplay();
+                    }
+                    else
+                    {
+                        Size s = np.getSize();
+                        Bitmap bs = new Bitmap(s.Width * str.Length, s.Height);
+                        Graphics gx = Graphics.FromImage(bs);
+                        gx.Clear(Color.White);
+                        gx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+                        //var str=np.TEXTValue();
                         using (Font f = new Font(Font.FontFamily, (s.Width * 72 / 96)))
                         {
-                            gx.DrawString(""+str[0], f, Brushes.Black, 0-np.stringoffset(), 0);
+                            gx.DrawString(str + "", f, Brushes.Black, 0 - np.stringoffset(), 0);
                         }
+                        gx.Dispose();
+                        imglist.Items.Add(new img("字符" + count++, bs, str));
+                        if (imglist.SelectedIndex == -1)
+                            imglist.SelectedIndex = 0;
+                        selectmap = ((img)imglist.SelectedItem).map;
+                        updateDisplay();
                     }
-                    gx.Dispose();
-                    imglist.Items.Add(new img("字符" + count++, bs,str));
-                    if (imglist.SelectedIndex == -1)
-                        imglist.SelectedIndex = 0;
-                    selectmap = ((img)imglist.SelectedItem).map;
-                    updateDisplay();
                 }
                 else
                 {
@@ -1133,6 +1261,75 @@ namespace LCDImageSize
                 moddraw.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
         }
 
+        private void editlock_CheckedChanged(object sender, EventArgs e)
+        {
+            if (selectimg != null)
+                if (selectimg.isString)
+                {
+                    selectimg.isString = editlock.Checked;
+                    updateDisplay();
+                }
+        }
+
+        newLayer newLayer=new newLayer();
+        int layercount = 0;
+        private void b_newlayer_Click(object sender, EventArgs e)
+        {
+            if (newLayer.ShowDialog() == DialogResult.OK)
+            {
+                Size s = newLayer.LayerSize;
+                if (s.Width == 0 || s.Height == 0)
+                {
+                    MessageBox.Show("尺寸错误");
+                    return;
+                }
+                var view = new ListViewItem("层" + layercount);
+                var pic = new PictureBox() { Location = new Point(0, 0), Size = layerpanel.Size };
+                
+                layerpanel.Controls.Clear();
+                layerpanel.Controls.Add(pic);
+                view.Tag = new easydrag(pic, s) { Update=(b)=> { pic.Image = b;pic.Width = b.Width;pic.Height = b.Height;pic.Left = (pic.Parent.Width - pic.Width) / 2; pic.Left = pic.Left < 0 ? 0 : pic.Left; pic.Top = (pic.Parent.Height - pic.Height) / 2; pic.Top = pic.Top < 0 ? 0 : pic.Top; } };
+                layerlistView1.Items.Add(view);
+                view.Selected = true;
+                layercontrol.SelectedIndex = layercontrol.SelectedIndex+1;
+            }
+        }
+
+        private void layercontrol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LayerImageView.Nodes.Clear();
+            for(int i=0;i<imglist.Items.Count;i++)
+            {
+                img img = (imglist.Items[i] as img);
+                LayerImageView.Nodes.Add(new TreeNode() { Text = img.name, Tag = img.map });
+            }
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                switch (tabControl2.SelectedIndex)
+                {
+                    case 1:
+                        if (selectdrag != null)
+                            selectdrag.RemoveSelect();
+                        break;
+                }
+            }
+        }
+
+        easydrag selectdrag;
+        private void layerlistView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (layerlistView1.SelectedItems.Count == 0) return;
+            if (selectdrag == layerlistView1.SelectedItems[0].Tag as easydrag) return;
+            layerpanel.Controls.Clear();
+            selectdrag = layerlistView1.SelectedItems[0].Tag as easydrag;
+            layerpanel.Controls.Add(selectdrag.Control);
+
+        }
+
         private void BitmapView_MouseClick(object sender, MouseEventArgs e)
         {
             BitmapView_MouseMove(null, e);
@@ -1174,6 +1371,7 @@ namespace LCDImageSize
             if (imglist.SelectedIndex == -1) return;
             selectmap = ((img)imglist.SelectedItem).map;
             selectimg = (img)imglist.SelectedItem;
+            editlock.Checked = selectimg.isString;
             updateDisplay();
         }
     }
