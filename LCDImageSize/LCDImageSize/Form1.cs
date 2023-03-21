@@ -1393,7 +1393,7 @@ namespace LCDImageSize
                     MessageBox.Show("尺寸错误");
                     return;
                 }
-                var view = new ListViewItem("层" + layercount);
+                var view = new ListViewItem("层" + layercount++);
                 var pic = new PictureBox() { Location = new Point(0, 0), Size = layerpanel.Size };
                 
                 layerpanel.Controls.Clear();
@@ -1503,18 +1503,19 @@ namespace LCDImageSize
                 if (!b.Contains(item.map))
                 {
                     b.Add(item.map);
-                    sb.AppendLine($"const unsigned char img{count++}[]={{\r\n");
+                    sb.Append($"const unsigned char img{count++}[]={{//{item.map.Width}x{item.map.Height}");
                     sb.AppendLine(byte2Hex(buildDatamap(item.mapdata, item.map.Size)));
-                    sb.AppendLine("\r\n};\r\n\r\n");
+                    sb.AppendLine("\n};\r\n\r\n");
                 }
             }
-            sb.AppendLine($"void layer{layerlistView1.SelectedIndices[0]}(){{\r\n");
+            
+            sb.AppendLine($"void layer{layerlistView1.SelectedIndices[0]}(){{");
             int id = 0;
             foreach (var item in selectdrag.Items)
             {
-                sb.AppendLine($"DrawImage({id},{item.box.X},{item.box.Y},{item.box.Width},{item.box.Height},img{b.IndexOf(item.map)});\r\n");
+                sb.AppendLine($"\tDrawObject({id++},{item.box.X},{item.box.Y},{item.box.Width},{item.box.Height},img{b.IndexOf(item.map)});\n");
             }
-            sb.AppendLine("}\r\n");
+            sb.AppendLine("}\n");
             layeroutput.Text = sb.ToString();
         }
 
