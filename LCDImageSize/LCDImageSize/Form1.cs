@@ -756,8 +756,73 @@ namespace LCDImageSize
 
         }
 
+        string byte2Hex(byte[] bytes)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                if ((i % 16) == 0)
+                {
+                    sb.AppendLine();
+                }
+                sb.AppendFormat(strformat, bytes[i]);
+            }
+            return sb.ToString();
+        }
+        byte[] buildDatamap(byte[,] map,Size size)
+        {
+            byte[] data = null;
+            int w, h;
+            int x, y;
+            int t, dat;
+            int count = 0;
+            byte[] bitstats = new byte[8];
 
-
+            switch (mode)
+            {
+                case 0:
+                    w = size.Width;
+                    h = (size.Height + 7) / 8;
+                    data = new byte[w * h];
+                    for (y = 0; y < h; y++)
+                    {
+                        for (x = 0; x < w; x++)
+                        {
+                            dat = 0;
+                            for (int i = 0; i < 8; i++)
+                            {
+                                int hv = i + y * 8;
+                                if (hv >= size.Height)
+                                {
+                                    if (!scaninv)
+                                        dat <<= 1;
+                                    else
+                                        dat >>= 1;
+                                    continue;
+                                }
+                                if (!scaninv)
+                                {
+                                    dat <<= 1;
+                                    if (map[x, hv] != 0)
+                                        dat++;
+                                }
+                                else
+                                {
+                                    dat >>= 1;
+                                    if (map[x, hv] != 0)
+                                        dat |= 0x80;
+                                }
+                            }
+                            if (bitinv)
+                                data[count++] = (byte)~dat;
+                            else
+                                data[count++] = (byte)dat;
+                        }
+                    }
+                    break;
+            }
+            return data;
+        }
         byte[] imgtoByte()
         {
             byte[] data = null;
@@ -1415,6 +1480,42 @@ namespace LCDImageSize
         private void uart_clearrx_Click(object sender, EventArgs e)
         {
             tb_uartrx.Text = "";
+        }
+
+        private void b_deletlayer_Click(object sender, EventArgs e)
+        {
+            if (selectdrag == null) return;
+            layerpanel.Controls.Clear();
+            layerlistView1.SelectedItems[0].Remove();
+            if (layerlistView1.Items.Count > 0)
+                layerlistView1.Items[0].Selected = true;
+        }
+
+        private void layerbuildcode_Click(object sender, EventArgs e)
+        {
+            if(selectdrag == null) return;
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
+            List<Bitmap> b = new List<Bitmap>();
+            int count = 0;
+            foreach(var item in selectdrag.Items)
+            {
+                if (!b.Contains(item.map))
+                {
+                    b.Add(item.map);
+                    sb.AppendLine($"const unsigned char img{count++}[]={{\r\n");
+                    sb.AppendLine(byte2Hex(buildDatamap(item.mapdata, item.map.Size)));
+                    sb.AppendLine("\r\n};\r\n\r\n");
+                }
+            }
+            sb.AppendLine($"void layer{layerlistView1.SelectedIndices[0]}(){{\r\n");
+            int id = 0;
+            foreach (var item in selectdrag.Items)
+            {
+                sb.AppendLine($"DrawImage({id},{item.box.X},{item.box.Y},{item.box.Width},{item.box.Height},img{b.IndexOf(item.map)});\r\n");
+            }
+            sb.AppendLine("}\r\n");
+            layeroutput.Text = sb.ToString();
         }
 
         private void BitmapView_MouseClick(object sender, MouseEventArgs e)

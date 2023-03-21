@@ -78,7 +78,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.layercontrol = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.button11 = new System.Windows.Forms.Button();
+            this.b_deletlayer = new System.Windows.Forms.Button();
             this.b_newlayer = new System.Windows.Forms.Button();
             this.layerlistView1 = new System.Windows.Forms.ListView();
             this.tabPage8 = new System.Windows.Forms.TabPage();
@@ -115,7 +115,7 @@
             this.buildallimg = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
+            this.layerbuildcode = new System.Windows.Forms.Button();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
@@ -152,6 +152,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.uart_clearrx = new System.Windows.Forms.Button();
+            this.layeroutput = new System.Windows.Forms.TextBox();
             this.Showpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BitmapView)).BeginInit();
             this.dataoutmenu.SuspendLayout();
@@ -169,6 +170,7 @@
             this.layerpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel7.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.layercontrol.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -673,6 +675,7 @@
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.layeroutput);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 394);
             this.panel4.Name = "panel4";
@@ -703,9 +706,9 @@
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.button13);
-            this.tabPage7.Controls.Add(this.button14);
+            this.tabPage7.Controls.Add(this.layerbuildcode);
             this.tabPage7.Controls.Add(this.button12);
-            this.tabPage7.Controls.Add(this.button11);
+            this.tabPage7.Controls.Add(this.b_deletlayer);
             this.tabPage7.Controls.Add(this.b_newlayer);
             this.tabPage7.Controls.Add(this.layerlistView1);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
@@ -716,15 +719,15 @@
             this.tabPage7.Text = "图层编辑";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // b_deletlayer
             // 
-            this.button11.Location = new System.Drawing.Point(94, 280);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(78, 37);
-            this.button11.TabIndex = 1;
-            this.button11.Text = "删除图层";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.b_newlayer_Click);
+            this.b_deletlayer.Location = new System.Drawing.Point(94, 280);
+            this.b_deletlayer.Name = "b_deletlayer";
+            this.b_deletlayer.Size = new System.Drawing.Size(78, 37);
+            this.b_deletlayer.TabIndex = 1;
+            this.b_deletlayer.Text = "删除图层";
+            this.b_deletlayer.UseVisualStyleBackColor = true;
+            this.b_deletlayer.Click += new System.EventHandler(this.b_deletlayer_Click);
             // 
             // b_newlayer
             // 
@@ -745,6 +748,7 @@
             this.layerlistView1.Size = new System.Drawing.Size(169, 271);
             this.layerlistView1.TabIndex = 0;
             this.layerlistView1.UseCompatibleStateImageBehavior = false;
+            this.layerlistView1.View = System.Windows.Forms.View.Tile;
             this.layerlistView1.SelectedIndexChanged += new System.EventHandler(this.layerlistView1_SelectedIndexChanged);
             // 
             // tabPage8
@@ -1109,15 +1113,15 @@
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.b_newlayer_Click);
             // 
-            // button14
+            // layerbuildcode
             // 
-            this.button14.Location = new System.Drawing.Point(6, 414);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(163, 37);
-            this.button14.TabIndex = 1;
-            this.button14.Text = "生成代码";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.b_newlayer_Click);
+            this.layerbuildcode.Location = new System.Drawing.Point(6, 414);
+            this.layerbuildcode.Name = "layerbuildcode";
+            this.layerbuildcode.Size = new System.Drawing.Size(163, 37);
+            this.layerbuildcode.TabIndex = 1;
+            this.layerbuildcode.Text = "生成代码";
+            this.layerbuildcode.UseVisualStyleBackColor = true;
+            this.layerbuildcode.Click += new System.EventHandler(this.layerbuildcode_Click);
             // 
             // tabPage9
             // 
@@ -1486,6 +1490,16 @@
             this.uart_clearrx.UseVisualStyleBackColor = true;
             this.uart_clearrx.Click += new System.EventHandler(this.uart_clearrx_Click);
             // 
+            // layeroutput
+            // 
+            this.layeroutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layeroutput.Location = new System.Drawing.Point(0, 0);
+            this.layeroutput.Multiline = true;
+            this.layeroutput.Name = "layeroutput";
+            this.layeroutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.layeroutput.Size = new System.Drawing.Size(572, 87);
+            this.layeroutput.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1521,6 +1535,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.layercontrol.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
@@ -1636,7 +1652,7 @@
         private System.Windows.Forms.ListView layerlistView1;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.Button b_newlayer;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button b_deletlayer;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TreeView LayerObjectView;
@@ -1647,7 +1663,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button buildallimg;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button layerbuildcode;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.TabControl tabControl3;
@@ -1685,6 +1701,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button uart_clearrx;
+        private System.Windows.Forms.TextBox layeroutput;
     }
 }
 

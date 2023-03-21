@@ -12,7 +12,7 @@ namespace LCDImageSize
 {
     internal class easydrag
     {
-        class dragObject
+        public class dragObject
         {
             public Rectangle box;
             public Bitmap map;
@@ -60,6 +60,7 @@ namespace LCDImageSize
         Control srccontrol, dstcontrol;
         public Control Control { get { return dstcontrol; } }
         bool drag = false;
+        public List<dragObject> Items { get { return list; } }
 
         public void RemoveSelect()
         {
