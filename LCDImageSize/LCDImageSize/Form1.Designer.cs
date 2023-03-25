@@ -57,6 +57,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
+            this.buildallimg = new System.Windows.Forms.Button();
             this.resizebutton = new System.Windows.Forms.Button();
             this.saveimg = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -75,9 +76,13 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.layeroutput = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.layercontrol = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button13 = new System.Windows.Forms.Button();
+            this.layerbuildcode = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.b_deletlayer = new System.Windows.Forms.Button();
             this.b_newlayer = new System.Windows.Forms.Button();
             this.layerlistView1 = new System.Windows.Forms.ListView();
@@ -112,47 +117,43 @@
             this.fontb0b7CB = new System.Windows.Forms.CheckBox();
             this.fonta1a9CB = new System.Windows.Forms.CheckBox();
             this.fontprepictureBox1 = new System.Windows.Forms.PictureBox();
-            this.buildallimg = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.layerbuildcode = new System.Windows.Forms.Button();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tb_uartrx = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tb_uartrx = new System.Windows.Forms.TextBox();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.uart_clearrx = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.tb_uarttx = new System.Windows.Forms.TextBox();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.uartsend = new System.Windows.Forms.Button();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.tabPage13 = new System.Windows.Forms.TabPage();
-            this.tabPage14 = new System.Windows.Forms.TabPage();
             this.uartfastsendpanel = new System.Windows.Forms.Panel();
-            this.uart_tp_text = new System.Windows.Forms.TextBox();
-            this.uart_tp_send = new System.Windows.Forms.Button();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.uart_tp_check = new System.Windows.Forms.CheckBox();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.uart_tp_send = new System.Windows.Forms.Button();
+            this.uart_tp_text = new System.Windows.Forms.TextBox();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.uart_clearrx = new System.Windows.Forms.Button();
-            this.layeroutput = new System.Windows.Forms.TextBox();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.layertoimg = new System.Windows.Forms.Button();
             this.Showpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BitmapView)).BeginInit();
             this.dataoutmenu.SuspendLayout();
@@ -184,19 +185,19 @@
             this.tabPage9.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPage10.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.panel8.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.tabControl4.SuspendLayout();
             this.tabPage12.SuspendLayout();
-            this.tabPage13.SuspendLayout();
             this.uartfastsendpanel.SuspendLayout();
             this.panel12.SuspendLayout();
-            this.panel13.SuspendLayout();
+            this.tabPage13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel13.SuspendLayout();
             this.SuspendLayout();
             // 
             // Showpanel
@@ -488,6 +489,16 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "图像阈值";
             // 
+            // buildallimg
+            // 
+            this.buildallimg.Location = new System.Drawing.Point(69, 419);
+            this.buildallimg.Name = "buildallimg";
+            this.buildallimg.Size = new System.Drawing.Size(68, 31);
+            this.buildallimg.TabIndex = 5;
+            this.buildallimg.Text = "生成全部";
+            this.buildallimg.UseVisualStyleBackColor = true;
+            this.buildallimg.Click += new System.EventHandler(this.buildallimg_Click);
+            // 
             // resizebutton
             // 
             this.resizebutton.Location = new System.Drawing.Point(70, 326);
@@ -682,6 +693,16 @@
             this.panel4.Size = new System.Drawing.Size(574, 89);
             this.panel4.TabIndex = 1;
             // 
+            // layeroutput
+            // 
+            this.layeroutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layeroutput.Location = new System.Drawing.Point(0, 0);
+            this.layeroutput.Multiline = true;
+            this.layeroutput.Name = "layeroutput";
+            this.layeroutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.layeroutput.Size = new System.Drawing.Size(572, 87);
+            this.layeroutput.TabIndex = 0;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.layercontrol);
@@ -706,6 +727,7 @@
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.button13);
+            this.tabPage7.Controls.Add(this.layertoimg);
             this.tabPage7.Controls.Add(this.layerbuildcode);
             this.tabPage7.Controls.Add(this.button12);
             this.tabPage7.Controls.Add(this.b_deletlayer);
@@ -718,6 +740,36 @@
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "图层编辑";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(94, 323);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(78, 37);
+            this.button13.TabIndex = 1;
+            this.button13.Text = "保存图层";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.b_newlayer_Click);
+            // 
+            // layerbuildcode
+            // 
+            this.layerbuildcode.Location = new System.Drawing.Point(6, 414);
+            this.layerbuildcode.Name = "layerbuildcode";
+            this.layerbuildcode.Size = new System.Drawing.Size(163, 37);
+            this.layerbuildcode.TabIndex = 1;
+            this.layerbuildcode.Text = "生成代码";
+            this.layerbuildcode.UseVisualStyleBackColor = true;
+            this.layerbuildcode.Click += new System.EventHandler(this.layerbuildcode_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(3, 323);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(78, 37);
+            this.button12.TabIndex = 1;
+            this.button12.Text = "加载图层";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.b_newlayer_Click);
             // 
             // b_deletlayer
             // 
@@ -1083,46 +1135,6 @@
             this.fontprepictureBox1.TabIndex = 0;
             this.fontprepictureBox1.TabStop = false;
             // 
-            // buildallimg
-            // 
-            this.buildallimg.Location = new System.Drawing.Point(69, 419);
-            this.buildallimg.Name = "buildallimg";
-            this.buildallimg.Size = new System.Drawing.Size(68, 31);
-            this.buildallimg.TabIndex = 5;
-            this.buildallimg.Text = "生成全部";
-            this.buildallimg.UseVisualStyleBackColor = true;
-            this.buildallimg.Click += new System.EventHandler(this.buildallimg_Click);
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(3, 323);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(78, 37);
-            this.button12.TabIndex = 1;
-            this.button12.Text = "加载图层";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.b_newlayer_Click);
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(94, 323);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(78, 37);
-            this.button13.TabIndex = 1;
-            this.button13.Text = "保存图层";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.b_newlayer_Click);
-            // 
-            // layerbuildcode
-            // 
-            this.layerbuildcode.Location = new System.Drawing.Point(6, 414);
-            this.layerbuildcode.Name = "layerbuildcode";
-            this.layerbuildcode.Size = new System.Drawing.Size(163, 37);
-            this.layerbuildcode.TabIndex = 1;
-            this.layerbuildcode.Text = "生成代码";
-            this.layerbuildcode.UseVisualStyleBackColor = true;
-            this.layerbuildcode.Click += new System.EventHandler(this.layerbuildcode_Click);
-            // 
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.tabControl3);
@@ -1158,57 +1170,6 @@
             this.tabPage10.Text = "串口助手";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // tabPage11
-            // 
-            this.tabPage11.Location = new System.Drawing.Point(22, 4);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(731, 475);
-            this.tabPage11.TabIndex = 1;
-            this.tabPage11.Text = "SWD";
-            this.tabPage11.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox3.Location = new System.Drawing.Point(0, 375);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(288, 94);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "串口设置";
-            // 
-            // tb_uartrx
-            // 
-            this.tb_uartrx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_uartrx.Location = new System.Drawing.Point(3, 17);
-            this.tb_uartrx.Multiline = true;
-            this.tb_uartrx.Name = "tb_uartrx";
-            this.tb_uartrx.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tb_uartrx.Size = new System.Drawing.Size(431, 287);
-            this.tb_uartrx.TabIndex = 1;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.tabControl4);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(0, 0);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(288, 375);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "快捷发送";
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.groupBox4);
-            this.panel8.Controls.Add(this.groupBox3);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(440, 3);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(288, 469);
-            this.panel8.TabIndex = 3;
-            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.tb_uartrx);
@@ -1221,6 +1182,65 @@
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "收发区";
+            // 
+            // tb_uartrx
+            // 
+            this.tb_uartrx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_uartrx.Location = new System.Drawing.Point(3, 17);
+            this.tb_uartrx.Multiline = true;
+            this.tb_uartrx.Name = "tb_uartrx";
+            this.tb_uartrx.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tb_uartrx.Size = new System.Drawing.Size(431, 287);
+            this.tb_uartrx.TabIndex = 1;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.uart_clearrx);
+            this.panel11.Controls.Add(this.label11);
+            this.panel11.Controls.Add(this.label10);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel11.Location = new System.Drawing.Point(3, 304);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(431, 31);
+            this.panel11.TabIndex = 4;
+            // 
+            // uart_clearrx
+            // 
+            this.uart_clearrx.Location = new System.Drawing.Point(353, 4);
+            this.uart_clearrx.Name = "uart_clearrx";
+            this.uart_clearrx.Size = new System.Drawing.Size(75, 23);
+            this.uart_clearrx.TabIndex = 1;
+            this.uart_clearrx.Text = "清空接收";
+            this.uart_clearrx.UseVisualStyleBackColor = true;
+            this.uart_clearrx.Click += new System.EventHandler(this.uart_clearrx_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 12);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "发送区↓";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 12);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "接收区↑";
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.tb_uarttx);
+            this.panel10.Controls.Add(this.panel9);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel10.Location = new System.Drawing.Point(3, 335);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(431, 131);
+            this.panel10.TabIndex = 3;
             // 
             // tb_uarttx
             // 
@@ -1241,45 +1261,6 @@
             this.panel9.Size = new System.Drawing.Size(77, 131);
             this.panel9.TabIndex = 2;
             // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.tb_uarttx);
-            this.panel10.Controls.Add(this.panel9);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(3, 335);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(431, 131);
-            this.panel10.TabIndex = 3;
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.uart_clearrx);
-            this.panel11.Controls.Add(this.label11);
-            this.panel11.Controls.Add(this.label10);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(3, 304);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(431, 31);
-            this.panel11.TabIndex = 4;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 3);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 12);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "接收区↑";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 15);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(53, 12);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "发送区↓";
-            // 
             // uartsend
             // 
             this.uartsend.Location = new System.Drawing.Point(2, 105);
@@ -1289,6 +1270,27 @@
             this.uartsend.Text = "发送";
             this.uartsend.UseVisualStyleBackColor = true;
             this.uartsend.Click += new System.EventHandler(this.uartsend_Click);
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.groupBox4);
+            this.panel8.Controls.Add(this.groupBox3);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel8.Location = new System.Drawing.Point(440, 3);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(288, 469);
+            this.panel8.TabIndex = 3;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.tabControl4);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(288, 375);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "快捷发送";
             // 
             // tabControl4
             // 
@@ -1313,27 +1315,6 @@
             this.tabPage12.Text = "字符";
             this.tabPage12.UseVisualStyleBackColor = true;
             // 
-            // tabPage13
-            // 
-            this.tabPage13.Controls.Add(this.dataGridView1);
-            this.tabPage13.Controls.Add(this.panel13);
-            this.tabPage13.Location = new System.Drawing.Point(4, 22);
-            this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(274, 329);
-            this.tabPage13.TabIndex = 1;
-            this.tabPage13.Text = "modbus";
-            this.tabPage13.UseVisualStyleBackColor = true;
-            // 
-            // tabPage14
-            // 
-            this.tabPage14.Location = new System.Drawing.Point(4, 22);
-            this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(274, 329);
-            this.tabPage14.TabIndex = 2;
-            this.tabPage14.Text = "can";
-            this.tabPage14.UseVisualStyleBackColor = true;
-            // 
             // uartfastsendpanel
             // 
             this.uartfastsendpanel.AutoScroll = true;
@@ -1347,23 +1328,15 @@
             this.uartfastsendpanel.Size = new System.Drawing.Size(268, 323);
             this.uartfastsendpanel.TabIndex = 0;
             // 
-            // uart_tp_text
+            // uart_tp_check
             // 
-            this.uart_tp_text.Location = new System.Drawing.Point(18, 21);
-            this.uart_tp_text.Name = "uart_tp_text";
-            this.uart_tp_text.Size = new System.Drawing.Size(200, 21);
-            this.uart_tp_text.TabIndex = 0;
-            this.uart_tp_text.Visible = false;
-            // 
-            // uart_tp_send
-            // 
-            this.uart_tp_send.Location = new System.Drawing.Point(218, 20);
-            this.uart_tp_send.Name = "uart_tp_send";
-            this.uart_tp_send.Size = new System.Drawing.Size(30, 23);
-            this.uart_tp_send.TabIndex = 1;
-            this.uart_tp_send.Text = "99";
-            this.uart_tp_send.UseVisualStyleBackColor = true;
-            this.uart_tp_send.Visible = false;
+            this.uart_tp_check.AutoSize = true;
+            this.uart_tp_check.Location = new System.Drawing.Point(3, 25);
+            this.uart_tp_check.Name = "uart_tp_check";
+            this.uart_tp_check.Size = new System.Drawing.Size(15, 14);
+            this.uart_tp_check.TabIndex = 3;
+            this.uart_tp_check.UseVisualStyleBackColor = true;
+            this.uart_tp_check.Visible = false;
             // 
             // panel12
             // 
@@ -1376,14 +1349,14 @@
             this.panel12.Size = new System.Drawing.Size(268, 19);
             this.panel12.TabIndex = 2;
             // 
-            // label12
+            // label14
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(2, 4);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(23, 12);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Hex";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(217, 4);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(29, 12);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "编号";
             // 
             // label13
             // 
@@ -1394,24 +1367,94 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "发送内容";
             // 
-            // label14
+            // label12
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(217, 4);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(29, 12);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "编号";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(2, 4);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(23, 12);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Hex";
             // 
-            // uart_tp_check
+            // uart_tp_send
             // 
-            this.uart_tp_check.AutoSize = true;
-            this.uart_tp_check.Location = new System.Drawing.Point(3, 25);
-            this.uart_tp_check.Name = "uart_tp_check";
-            this.uart_tp_check.Size = new System.Drawing.Size(15, 14);
-            this.uart_tp_check.TabIndex = 3;
-            this.uart_tp_check.UseVisualStyleBackColor = true;
-            this.uart_tp_check.Visible = false;
+            this.uart_tp_send.Location = new System.Drawing.Point(218, 20);
+            this.uart_tp_send.Name = "uart_tp_send";
+            this.uart_tp_send.Size = new System.Drawing.Size(30, 23);
+            this.uart_tp_send.TabIndex = 1;
+            this.uart_tp_send.Text = "99";
+            this.uart_tp_send.UseVisualStyleBackColor = true;
+            this.uart_tp_send.Visible = false;
+            // 
+            // uart_tp_text
+            // 
+            this.uart_tp_text.Location = new System.Drawing.Point(18, 21);
+            this.uart_tp_text.Name = "uart_tp_text";
+            this.uart_tp_text.Size = new System.Drawing.Size(200, 21);
+            this.uart_tp_text.TabIndex = 0;
+            this.uart_tp_text.Visible = false;
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.Controls.Add(this.dataGridView1);
+            this.tabPage13.Controls.Add(this.panel13);
+            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage13.Size = new System.Drawing.Size(274, 329);
+            this.tabPage13.TabIndex = 1;
+            this.tabPage13.Text = "modbus";
+            this.tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 46);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(268, 280);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.checkBox1);
+            this.panel13.Controls.Add(this.textBox2);
+            this.panel13.Controls.Add(this.label16);
+            this.panel13.Controls.Add(this.textBox1);
+            this.panel13.Controls.Add(this.label15);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(3, 3);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(268, 43);
+            this.panel13.TabIndex = 2;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(18, 14);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(72, 16);
+            this.checkBox1.TabIndex = 2;
+            this.checkBox1.Text = "开始轮询";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(194, 18);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(71, 21);
+            this.textBox2.TabIndex = 0;
+            this.textBox2.Text = "500";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(192, 3);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(77, 12);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "轮询时间(ms)";
             // 
             // textBox1
             // 
@@ -1430,75 +1473,44 @@
             this.label15.TabIndex = 1;
             this.label15.Text = "从站地址";
             // 
-            // panel13
+            // tabPage14
             // 
-            this.panel13.Controls.Add(this.checkBox1);
-            this.panel13.Controls.Add(this.textBox2);
-            this.panel13.Controls.Add(this.label16);
-            this.panel13.Controls.Add(this.textBox1);
-            this.panel13.Controls.Add(this.label15);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(3, 3);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(268, 43);
-            this.panel13.TabIndex = 2;
+            this.tabPage14.Location = new System.Drawing.Point(4, 22);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Size = new System.Drawing.Size(274, 329);
+            this.tabPage14.TabIndex = 2;
+            this.tabPage14.Text = "can";
+            this.tabPage14.UseVisualStyleBackColor = true;
             // 
-            // label16
+            // groupBox3
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(192, 3);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(77, 12);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "轮询时间(ms)";
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox3.Location = new System.Drawing.Point(0, 375);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(288, 94);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "串口设置";
             // 
-            // textBox2
+            // tabPage11
             // 
-            this.textBox2.Location = new System.Drawing.Point(194, 18);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(71, 21);
-            this.textBox2.TabIndex = 0;
-            this.textBox2.Text = "500";
+            this.tabPage11.Location = new System.Drawing.Point(22, 4);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage11.Size = new System.Drawing.Size(731, 475);
+            this.tabPage11.TabIndex = 1;
+            this.tabPage11.Text = "SWD";
+            this.tabPage11.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // layertoimg
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(18, 14);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(72, 16);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "开始轮询";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 46);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(268, 280);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // uart_clearrx
-            // 
-            this.uart_clearrx.Location = new System.Drawing.Point(353, 4);
-            this.uart_clearrx.Name = "uart_clearrx";
-            this.uart_clearrx.Size = new System.Drawing.Size(75, 23);
-            this.uart_clearrx.TabIndex = 1;
-            this.uart_clearrx.Text = "清空接收";
-            this.uart_clearrx.UseVisualStyleBackColor = true;
-            this.uart_clearrx.Click += new System.EventHandler(this.uart_clearrx_Click);
-            // 
-            // layeroutput
-            // 
-            this.layeroutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layeroutput.Location = new System.Drawing.Point(0, 0);
-            this.layeroutput.Multiline = true;
-            this.layeroutput.Name = "layeroutput";
-            this.layeroutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.layeroutput.Size = new System.Drawing.Size(572, 87);
-            this.layeroutput.TabIndex = 0;
+            this.layertoimg.Location = new System.Drawing.Point(6, 366);
+            this.layertoimg.Name = "layertoimg";
+            this.layertoimg.Size = new System.Drawing.Size(163, 37);
+            this.layertoimg.TabIndex = 1;
+            this.layertoimg.Text = "层合并为图片";
+            this.layertoimg.UseVisualStyleBackColor = true;
+            this.layertoimg.Click += new System.EventHandler(this.layertoimg_Click);
             // 
             // Form1
             // 
@@ -1554,25 +1566,25 @@
             this.tabPage9.ResumeLayout(false);
             this.tabControl3.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
             this.tabPage12.ResumeLayout(false);
-            this.tabPage13.ResumeLayout(false);
             this.uartfastsendpanel.ResumeLayout(false);
             this.uartfastsendpanel.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            this.tabPage13.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1702,6 +1714,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button uart_clearrx;
         private System.Windows.Forms.TextBox layeroutput;
+        private System.Windows.Forms.Button layertoimg;
     }
 }
 

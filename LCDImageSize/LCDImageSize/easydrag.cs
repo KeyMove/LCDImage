@@ -320,6 +320,42 @@ namespace LCDImageSize
             graymap.UnlockBits(bdata);
             return mapdata;
         }
+        public Bitmap DrawDataMap(Bitmap bit=null)
+        {
+            mainObj.clear();
+            foreach (var item in list)
+            {
+                mainObj.append(item);
+            }
+            if (bit == null)
+                bit = new Bitmap(mainObj.box.Width, mainObj.box.Height);
+            var MapData = mainObj.mapdata;
+            Rectangle rect = new Rectangle(0, 0, bit.Width, bit.Height);
+            BitmapData bdata = bit.LockBits(rect, ImageLockMode.ReadWrite, bit.PixelFormat);
+            int sidlen = bdata.Stride;
+            int rowlen = sidlen * bit.Height;
+            byte[] buff = new byte[rowlen];
+            for (int h = 0; h < bit.Height; h++)
+                for (int w = 0; w < bit.Width; w++)
+                {
+                    if (MapData[w, h] == 0)
+                    {
+                        buff[sidlen * h + 0] = 0;
+                        buff[sidlen * h + 1] = 0;
+                        buff[sidlen * h + 2] = 0;
+                    }
+                    else
+                    {
+                        buff[sidlen * h + 0] = 0xff;
+                        buff[sidlen * h + 1] = 0xff;
+                        buff[sidlen * h + 2] = 0xff;
+                    }
+                    buff[sidlen * h + 3] = 0xff;
+                }
+            System.Runtime.InteropServices.Marshal.Copy(buff, 0, bdata.Scan0, buff.Length);
+            bit.UnlockBits(bdata);
+            return bit;
+        }
         Bitmap scalMap;
         Graphics scalDraw;
         Bitmap toPointMap(Bitmap bit, byte[,] MapData,Rectangle rect)

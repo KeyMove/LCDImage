@@ -144,6 +144,7 @@ namespace LCDImageSize
             }
         }
 
+        #region 数码管生成
         Bitmap LEDmap = new Bitmap(240, 240);
         Graphics LEDDraw;
 
@@ -275,7 +276,9 @@ namespace LCDImageSize
             };
             segspcchar.CheckedChanged += (s, e) => { updateLEDData(blist); };
         }
+        #endregion
 
+        #region 基础图像处理
         void InitRGB()
         {
             for (int i = 0; i < 256; i++)
@@ -379,7 +382,7 @@ namespace LCDImageSize
             catch { return null; }
         }
 
-       
+        #endregion
 
         private void addimg_Click(object sender, EventArgs e)
         {
@@ -455,7 +458,7 @@ namespace LCDImageSize
                     catch { MessageBox.Show("图片无效"); }
             }
         }
-
+        
         private void grayval_Scroll(object sender, EventArgs e)
         {
             selectimg.map.Tag=selectimg.fit = (int)(grayval.Value * 2.55);
@@ -1371,16 +1374,38 @@ namespace LCDImageSize
                 moddraw.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
         }
 
-        private void editlock_CheckedChanged(object sender, EventArgs e)
+
+
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (selectimg != null)
-                if (selectimg.isString)
+            if (e.KeyCode == Keys.Delete)
+            {
+                switch (tabControl2.SelectedIndex)
                 {
-                    selectimg.isString = editlock.Checked;
-                    updateDisplay();
+                    case 1:
+                        if (selectdrag != null)
+                            selectdrag.RemoveSelect();
+                        break;
                 }
+            }
         }
 
+
+        #region ToolsControl
+        private void uartsend_Click(object sender, EventArgs e)
+        {
+            COM.SendUartData(tb_uarttx.Text);
+        }
+
+        private void uart_clearrx_Click(object sender, EventArgs e)
+        {
+            tb_uartrx.Text = "";
+        }
+        #endregion
+
+        #region LayerControl
+        easydrag selectdrag;
         newLayer newLayer=new newLayer();
         int layercount = 0;
         private void b_newlayer_Click(object sender, EventArgs e)
@@ -1404,7 +1429,6 @@ namespace LCDImageSize
                 layercontrol.SelectedIndex = layercontrol.SelectedIndex+1;
             }
         }
-
         private void layercontrol_SelectedIndexChanged(object sender, EventArgs e)
         {
             LayerImageView.Nodes.Clear();
@@ -1414,22 +1438,6 @@ namespace LCDImageSize
                 LayerImageView.Nodes.Add(new TreeNode() { Text = img.name, Tag = img.map });
             }
         }
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                switch (tabControl2.SelectedIndex)
-                {
-                    case 1:
-                        if (selectdrag != null)
-                            selectdrag.RemoveSelect();
-                        break;
-                }
-            }
-        }
-
-        easydrag selectdrag;
         private void layerlistView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (layerlistView1.SelectedItems.Count == 0) return;
@@ -1439,7 +1447,62 @@ namespace LCDImageSize
             layerpanel.Controls.Add(selectdrag.Control);
             selectdrag.updateAll();
         }
+        private void b_deletlayer_Click(object sender, EventArgs e)
+        {
+            if (selectdrag == null) return;
+            layerpanel.Controls.Clear();
+            layerlistView1.SelectedItems[0].Remove();
+            if (layerlistView1.Items.Count > 0)
+                layerlistView1.Items[0].Selected = true;
+        }
+        private void layerbuildcode_Click(object sender, EventArgs e)
+        {
+            if(selectdrag == null) return;
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
+            List<Bitmap> b = new List<Bitmap>();
+            int count = 0;
+            foreach(var item in selectdrag.Items)
+            {
+                if (!b.Contains(item.map))
+                {
+                    b.Add(item.map);
+                    sb.Append($"const unsigned char img{count++}[]={{//{item.map.Width}x{item.map.Height}");
+                    sb.AppendLine(byte2Hex(buildDatamap(item.mapdata, item.map.Size)));
+                    sb.AppendLine("\n};\r\n\r\n");
+                }
+            }
+            
+            sb.AppendLine($"void layer{layerlistView1.SelectedIndices[0]}(){{");
+            int id = 0;
+            foreach (var item in selectdrag.Items)
+            {
+                sb.AppendLine($"\tDrawObject({id++},{item.box.X},{item.box.Y},{item.box.Width},{item.box.Height},img{b.IndexOf(item.map)});\n");
+            }
+            sb.AppendLine("}\n");
+            layeroutput.Text = sb.ToString();
+        }
 
+        private void layertoimg_Click(object sender, EventArgs e)
+        {
+            if(selectdrag==null) return;
+            imglist.Items.Add(new img("新图像" + count++, selectdrag.DrawDataMap()));
+            if (imglist.SelectedIndex == -1)
+                imglist.SelectedIndex = 0;
+            selectmap = ((img)imglist.SelectedItem).map;
+            updateDisplay();
+        }
+        #endregion
+        #region BitmapListControl
+        private void editlock_CheckedChanged(object sender, EventArgs e)
+        {
+            if (selectimg != null)
+                if (selectimg.isString)
+                {
+                    selectimg.isString = editlock.Checked;
+                    updateDisplay();
+                }
+        }
         private void buildallimg_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
@@ -1470,53 +1533,6 @@ namespace LCDImageSize
             }
             OutPutData.Text = sb.ToString();
 
-        }
-
-        private void uartsend_Click(object sender, EventArgs e)
-        {
-            COM.SendUartData(tb_uarttx.Text);
-        }
-
-        private void uart_clearrx_Click(object sender, EventArgs e)
-        {
-            tb_uartrx.Text = "";
-        }
-
-        private void b_deletlayer_Click(object sender, EventArgs e)
-        {
-            if (selectdrag == null) return;
-            layerpanel.Controls.Clear();
-            layerlistView1.SelectedItems[0].Remove();
-            if (layerlistView1.Items.Count > 0)
-                layerlistView1.Items[0].Selected = true;
-        }
-
-        private void layerbuildcode_Click(object sender, EventArgs e)
-        {
-            if(selectdrag == null) return;
-            StringBuilder sb = new StringBuilder();
-            StringBuilder sb2 = new StringBuilder();
-            List<Bitmap> b = new List<Bitmap>();
-            int count = 0;
-            foreach(var item in selectdrag.Items)
-            {
-                if (!b.Contains(item.map))
-                {
-                    b.Add(item.map);
-                    sb.Append($"const unsigned char img{count++}[]={{//{item.map.Width}x{item.map.Height}");
-                    sb.AppendLine(byte2Hex(buildDatamap(item.mapdata, item.map.Size)));
-                    sb.AppendLine("\n};\r\n\r\n");
-                }
-            }
-            
-            sb.AppendLine($"void layer{layerlistView1.SelectedIndices[0]}(){{");
-            int id = 0;
-            foreach (var item in selectdrag.Items)
-            {
-                sb.AppendLine($"\tDrawObject({id++},{item.box.X},{item.box.Y},{item.box.Width},{item.box.Height},img{b.IndexOf(item.map)});\n");
-            }
-            sb.AppendLine("}\n");
-            layeroutput.Text = sb.ToString();
         }
 
         private void BitmapView_MouseClick(object sender, MouseEventArgs e)
@@ -1566,5 +1582,7 @@ namespace LCDImageSize
             editlock.Checked = selectimg.isString;
             updateDisplay();
         }
+
+        #endregion
     }
 }
