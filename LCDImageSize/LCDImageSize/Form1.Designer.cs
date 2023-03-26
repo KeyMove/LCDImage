@@ -154,6 +154,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.layertoimg = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.imginv = new System.Windows.Forms.Button();
             this.Showpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BitmapView)).BeginInit();
             this.dataoutmenu.SuspendLayout();
@@ -198,6 +200,7 @@
             this.tabPage13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel13.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // Showpanel
@@ -441,12 +444,13 @@
             this.groupBox1.Controls.Add(this.button6);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Location = new System.Drawing.Point(3, 6);
+            this.groupBox1.Location = new System.Drawing.Point(3, 159);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(120, 107);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "图像操作";
+            this.groupBox1.Visible = false;
             // 
             // tabControl1
             // 
@@ -521,6 +525,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox6);
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -535,12 +540,13 @@
             // 
             this.groupBox2.Controls.Add(this.zipmode);
             this.groupBox2.Controls.Add(this.enablezip);
-            this.groupBox2.Location = new System.Drawing.Point(3, 119);
+            this.groupBox2.Location = new System.Drawing.Point(3, 81);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(120, 72);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "图像压缩";
+            this.groupBox2.Visible = false;
             // 
             // zipmode
             // 
@@ -1512,6 +1518,26 @@
             this.layertoimg.UseVisualStyleBackColor = true;
             this.layertoimg.Click += new System.EventHandler(this.layertoimg_Click);
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.imginv);
+            this.groupBox6.Location = new System.Drawing.Point(3, 3);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(120, 72);
+            this.groupBox6.TabIndex = 15;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "图像操作";
+            // 
+            // imginv
+            // 
+            this.imginv.Location = new System.Drawing.Point(21, 20);
+            this.imginv.Name = "imginv";
+            this.imginv.Size = new System.Drawing.Size(81, 23);
+            this.imginv.TabIndex = 0;
+            this.imginv.Text = "像素取反";
+            this.imginv.UseVisualStyleBackColor = true;
+            this.imginv.Click += new System.EventHandler(this.imginv_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1585,6 +1611,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1715,6 +1742,8 @@
         private System.Windows.Forms.Button uart_clearrx;
         private System.Windows.Forms.TextBox layeroutput;
         private System.Windows.Forms.Button layertoimg;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button imginv;
     }
 }
 

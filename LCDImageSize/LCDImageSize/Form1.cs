@@ -8,6 +8,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -380,6 +381,27 @@ namespace LCDImageSize
                 return bmap;
             }
             catch { return null; }
+        }
+
+        public Bitmap ImageInv(Bitmap bit)
+        {
+            
+            Rectangle rect = new Rectangle(0, 0, bit.Width, bit.Height);
+            BitmapData bdata = bit.LockBits(rect, ImageLockMode.ReadWrite, bit.PixelFormat);
+            int sidlen = bdata.Stride;
+            int rowlen = sidlen * bit.Height;
+            byte[] buff = new byte[rowlen];
+            Marshal.Copy(bdata.Scan0, buff, 0, rowlen);
+            for (int h = 0; h < bit.Height; h++)
+                for (int w = 0; w < bit.Width; w++)
+                {
+                    buff[sidlen * h + w * 4 + 0] ^= 0xff;
+                    buff[sidlen * h + w * 4 + 1] ^= 0xff;
+                    buff[sidlen * h + w * 4 + 2] ^= 0xff;
+                }
+            System.Runtime.InteropServices.Marshal.Copy(buff, 0, bdata.Scan0, buff.Length);
+            bit.UnlockBits(bdata);
+            return bit;
         }
 
         #endregion
@@ -1533,6 +1555,12 @@ namespace LCDImageSize
             }
             OutPutData.Text = sb.ToString();
 
+        }
+
+        private void imginv_Click(object sender, EventArgs e)
+        {
+            selectimg.map = ImageInv(selectimg.map);
+            updateDisplay();
         }
 
         private void BitmapView_MouseClick(object sender, MouseEventArgs e)

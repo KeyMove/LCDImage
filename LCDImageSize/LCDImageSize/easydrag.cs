@@ -338,19 +338,19 @@ namespace LCDImageSize
             for (int h = 0; h < bit.Height; h++)
                 for (int w = 0; w < bit.Width; w++)
                 {
-                    if (MapData[w, h] == 0)
+                    if (MapData[w, h] != 0)
                     {
-                        buff[sidlen * h + 0] = 0;
-                        buff[sidlen * h + 1] = 0;
-                        buff[sidlen * h + 2] = 0;
+                        buff[sidlen * h + w * 4 + 0] = 0;
+                        buff[sidlen * h + w * 4 + 1] = 0;
+                        buff[sidlen * h + w * 4 + 2] = 0;
                     }
                     else
                     {
-                        buff[sidlen * h + 0] = 0xff;
-                        buff[sidlen * h + 1] = 0xff;
-                        buff[sidlen * h + 2] = 0xff;
+                        buff[sidlen * h + w * 4 + 0] = 0xff;
+                        buff[sidlen * h + w * 4 + 1] = 0xff;
+                        buff[sidlen * h + w * 4 + 2] = 0xff;
                     }
-                    buff[sidlen * h + 3] = 0xff;
+                    buff[sidlen * h + w * 4 + 3] = 0xff;
                 }
             System.Runtime.InteropServices.Marshal.Copy(buff, 0, bdata.Scan0, buff.Length);
             bit.UnlockBits(bdata);
